@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /**
-    ICBMainViewController - класс главного контроллера приложения.
+    ICBMainViewController is a main view controller class.
 */
 
 class ICBMainViewController: UIViewController {
@@ -48,7 +48,7 @@ class ICBMainViewController: UIViewController {
         }
     }
     
-    // MARK: Обработка нажатия на кнопки
+    // MARK: Button press processing
     
     @objc func shareButtonDidPress() {
         

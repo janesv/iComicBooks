@@ -10,18 +10,24 @@ import Foundation
 import UIKit
 
 /**
-    Файл для хранения глобальных констант, которые задействованы для дизайна во всем приложении.
+    Global constants file.
 */
 
-struct Colors {
+// MARK: Colors
+
+extension UIColor {
     static let mainBackgroundColor = UIColor(red: 0.11, green: 0.12, blue: 0.18, alpha: 1.0)
 }
 
-struct TextFonts {
+// MARK: Fonts
+
+extension UIFont {
     static func comingSoonRegularFontWithSize(size: CGFloat) -> UIFont {
         return UIFont(name: "ComingSoon", size: size)!
     }
 }
+
+// MARK: Images
 
 struct ButtonImages {
     struct speechSynth {
