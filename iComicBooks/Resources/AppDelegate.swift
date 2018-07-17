@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        window = UIWindow.init(frame: UIScreen.main.bounds)
+        UIApplication.shared.statusBarStyle = .lightContent
         
+        window = UIWindow.init(frame: UIScreen.main.bounds)
         let rootVC = ICBMainViewController.init(nibName: "ICBMainViewController", bundle: nil)
         window?.rootViewController = rootVC
         window?.makeKeyAndVisible()

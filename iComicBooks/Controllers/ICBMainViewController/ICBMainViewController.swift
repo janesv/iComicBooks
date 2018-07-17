@@ -22,6 +22,14 @@ class ICBMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backgroundView.backgroundColor = Colors.mainBackgroundColor
+        configureComicTitleLabel(withText: "#1017 Valentine Dilemma")
     }
     
+    func configureComicTitleLabel(withText text: String) {
+        comicTitleLabel.textColor = UIColor.white
+        comicTitleLabel.font = TextFonts.comingSoonRegularFontWithSize(size: 16)
+        comicTitleLabel.textAlignment = .center
+        comicTitleLabel.text = text
+    }
 }
