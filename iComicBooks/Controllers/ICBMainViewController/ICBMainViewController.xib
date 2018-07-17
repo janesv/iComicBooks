@@ -33,18 +33,24 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="fyP-W0-0ky">
-                            <rect key="frame" x="112.5" y="617" width="150" height="34"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="fyP-W0-0ky">
+                            <rect key="frame" x="132.5" y="617" width="110" height="34"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkT-82-ZUm">
-                                    <rect key="frame" x="0.0" y="0.0" width="54" height="34"/>
-                                    <state key="normal" title="Button"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-BT-8Kb">
-                                    <rect key="frame" x="96" y="0.0" width="54" height="34"/>
-                                    <state key="normal" title="Button"/>
+                                    <rect key="frame" x="80" y="0.0" width="30" height="34"/>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="lOE-BT-8Kb" secondAttribute="bottom" id="e5P-kY-WWg"/>
+                                <constraint firstItem="jkT-82-ZUm" firstAttribute="leading" secondItem="fyP-W0-0ky" secondAttribute="leading" id="g3Z-Dm-Ko2"/>
+                                <constraint firstAttribute="trailing" secondItem="lOE-BT-8Kb" secondAttribute="trailing" id="nf2-P8-h2N"/>
+                                <constraint firstItem="lOE-BT-8Kb" firstAttribute="top" secondItem="fyP-W0-0ky" secondAttribute="top" id="qNB-2D-jKn"/>
+                                <constraint firstItem="jkT-82-ZUm" firstAttribute="top" secondItem="fyP-W0-0ky" secondAttribute="top" id="uUi-PT-PHy"/>
+                                <constraint firstAttribute="bottom" secondItem="jkT-82-ZUm" secondAttribute="bottom" id="zhO-do-NgW"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

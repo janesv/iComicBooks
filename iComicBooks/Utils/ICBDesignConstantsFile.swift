@@ -23,3 +23,15 @@ struct TextFonts {
     }
 }
 
+struct ButtonImages {
+    struct speechSynth {
+        static let normalState = #imageLiteral(resourceName: "speechSynthButtonIcon")
+        static let pressedState = #imageLiteral(resourceName: "speechSynthPressedButtonIcon")
+    }
+
+    struct share {
+        static let normalState = #imageLiteral(resourceName: "shareButtonIcon")
+        static let pressedState = #imageLiteral(resourceName: "sharePressedButtonIcon")
+    }
+}
+
