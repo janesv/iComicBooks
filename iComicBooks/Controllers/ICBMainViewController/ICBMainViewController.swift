@@ -24,21 +24,21 @@ class ICBMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundView.backgroundColor = Colors.mainBackgroundColor
+        backgroundView.backgroundColor = UIColor.mainBackgroundColor
         
         configureComicTitleLabel(withText: "#1017 Valentine Dilemma")
         configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
         configureButton(shareButton, withImage: ButtonImages.share.normalState)
     }
     
-    func configureComicTitleLabel(withText text: String) {
+    private func configureComicTitleLabel(withText text: String) {
         comicTitleLabel.textColor = UIColor.white
-        comicTitleLabel.font = TextFonts.comingSoonRegularFontWithSize(size: 18)
+        comicTitleLabel.font = UIFont.comingSoonRegularFontWithSize(size: 18)
         comicTitleLabel.textAlignment = .center
         comicTitleLabel.text = text
     }
     
-    func configureButton(_ button: UIButton, withImage image: UIImage) {
+    private func configureButton(_ button: UIButton, withImage image: UIImage) {
         button.setImage(image, for: .normal)
         
         if button == shareButton {
@@ -48,13 +48,13 @@ class ICBMainViewController: UIViewController {
         }
     }
     
-    // MARK: Button press processing
+    // MARK: - Button press processing
     
-    @objc func shareButtonDidPress() {
+    @objc fileprivate func shareButtonDidPress() {
         
     }
     
-    @objc func speechSynthButtonDidPress() {
+    @objc fileprivate func speechSynthButtonDidPress() {
         if speechSynthButtonIsPressed {
             speechSynthesizerButton.setImage(ButtonImages.speechSynth.normalState, for: .normal)
             speechSynthButtonIsPressed = false

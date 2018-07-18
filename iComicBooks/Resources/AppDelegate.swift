@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-        let rootVC = ICBMainViewController.init(nibName: "ICBMainViewController", bundle: nil)
-        window?.rootViewController = rootVC
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+
+        let mainViewController = ICBMainViewController()
+        window?.rootViewController = mainViewController
         
         return true
     }

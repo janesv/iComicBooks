@@ -13,13 +13,13 @@ import UIKit
     Global constants file.
 */
 
-// MARK: Colors
+// MARK: - Colors
 
 extension UIColor {
     static let mainBackgroundColor = UIColor(red: 0.11, green: 0.12, blue: 0.18, alpha: 1.0)
 }
 
-// MARK: Fonts
+// MARK: - Fonts
 
 extension UIFont {
     static func comingSoonRegularFontWithSize(size: CGFloat) -> UIFont {
@@ -27,7 +27,7 @@ extension UIFont {
     }
 }
 
-// MARK: Images
+// MARK: - Images
 
 struct ButtonImages {
     struct speechSynth {
