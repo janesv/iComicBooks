@@ -11,42 +11,25 @@ import UIKit
 
 /**
     ICBSingleComicView is a class that draws and configures a view
-    for a single comic. It also contains methods to make this very view swipeable.
+    for a single comic. 
 */
 
 class ICBSingleComicView: UIView {
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         configureComicView()
-        addPanGestureRecognizer()
     }
     
     // MARK: - comicView configurations
     
-    private func configureComicView() {
+    fileprivate func configureComicView() {
         self.backgroundColor = UIColor.clear
         
         let comicImgViewFrame = CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height)
         let comicImgView = UIImageView.init(frame: comicImgViewFrame)
         comicImgView.makeImageViewRoundedWithColoredFrame(color: .redComicViewFrameColor)
         self.addSubview(comicImgView)
-    }
-    
-    // MARK: - Gestures
-    
-    private func addPanGestureRecognizer() {
-        self.isUserInteractionEnabled = true
-        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture))
-        self.addGestureRecognizer(panGesture)
-    }
-    
-    @objc private func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self)
-        if let movableView = recognizer.view {
-            movableView.center = CGPoint(x: movableView.center.x + translation.x, y: movableView.center.y + translation.y)
-        }
-        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self)
     }
 }
