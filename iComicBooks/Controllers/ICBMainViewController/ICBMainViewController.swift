@@ -18,24 +18,33 @@ class ICBMainViewController: UIViewController {
     @IBOutlet var comicTitleLabel: UILabel!
     @IBOutlet var speechSynthesizerButton: UIButton!
     @IBOutlet var shareButton: UIButton!
+    @IBOutlet var comicView: ICBSingleComicView!
     
     private var speechSynthButtonIsPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundView.backgroundColor = UIColor.mainBackgroundColor
+        backgroundView.backgroundColor = .mainBackgroundColor
         
         configureComicTitleLabel(withText: "#1017 Valentine Dilemma")
-        configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
-        configureButton(shareButton, withImage: ButtonImages.share.normalState)
+        configureButtons()
     }
+    
+    // MARK: - Title configurations
     
     private func configureComicTitleLabel(withText text: String) {
         comicTitleLabel.textColor = UIColor.white
         comicTitleLabel.font = UIFont.comingSoonRegularFontWithSize(size: 18)
         comicTitleLabel.textAlignment = .center
         comicTitleLabel.text = text
+    }
+    
+    // MARK: - Button configurations
+    
+    private func configureButtons() {
+        configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
+        configureButton(shareButton, withImage: ButtonImages.share.normalState)
     }
     
     private func configureButton(_ button: UIButton, withImage image: UIImage) {
