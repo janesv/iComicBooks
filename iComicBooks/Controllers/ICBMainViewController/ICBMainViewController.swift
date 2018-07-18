@@ -91,30 +91,41 @@ class ICBMainViewController: UIViewController {
         comicView.addGestureRecognizer(panGesture)
     }
     
-    @objc fileprivate func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+    @objc fileprivate func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: view)
         if let movableView = recognizer.view {
             movableView.center = CGPoint(x: comicViewInitialCenterPosition.x + translation.x, y: comicViewInitialCenterPosition.y + translation.y)
-            addSwipeGesture(recognizer: recognizer, movableView: movableView)
+            addTiltAnimation(toView: movableView)
+            addSwipeGesture(recognizer, toView: movableView)
         }
     }
     
-    fileprivate func addSwipeGesture(recognizer: UIPanGestureRecognizer, movableView: UIView) {
+    fileprivate func addTiltAnimation(toView movableView: UIView) {
+        let tiltAngle: CGFloat = 0.61 // Radians expression for 35 degrees
+        let distanceMoved = movableView.center.x - comicViewInitialCenterPosition.x
+        let distanceShouldBeCovered = view.frame.size.width / tiltAngle
+        let rotationAngle = distanceMoved / distanceShouldBeCovered
+        
+        movableView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+    }
+    
+    fileprivate func addSwipeGesture(_ recognizer: UIPanGestureRecognizer, toView movableView: UIView) {
         if recognizer.state == UIGestureRecognizerState.ended {
-            if movableView.center.x < 50.0 { // Swipe to the left
+            if movableView.center.x < 20.0 { // Swipe to the left
                 UIView.animate(withDuration: 0.3, animations: {
-                    movableView.center = CGPoint(x: movableView.center.x - 200.0, y: movableView.center.y)
+                    movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
                 })
                 return
             } else if movableView.center.x > view.frame.width - 20.0 { // Swipe to the right
                 UIView.animate(withDuration: 0.3, animations: {
-                    movableView.center = CGPoint(x: movableView.center.x + 200.0, y: movableView.center.y)
+                    movableView.center = CGPoint(x: movableView.center.x + self.view.frame.width, y: movableView.center.y)
                 })
                 return
             }
             
             UIView.animate(withDuration: 0.2, animations: { // Back to the initial position
                 movableView.center = self.comicViewInitialCenterPosition
+                movableView.transform = .identity
             })
         }
     }
