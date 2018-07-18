@@ -44,8 +44,8 @@ class ICBSingleComicView: UIView {
     
     @objc private func handlePanGesture(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self)
-        if let myView = recognizer.view {
-            myView.center = CGPoint(x: myView.center.x + translation.x, y: myView.center.y + translation.y)
+        if let movableView = recognizer.view {
+            movableView.center = CGPoint(x: movableView.center.x + translation.x, y: movableView.center.y + translation.y)
         }
         recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self)
     }
