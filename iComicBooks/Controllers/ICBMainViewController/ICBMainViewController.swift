@@ -56,7 +56,7 @@ class ICBMainViewController: UIViewController {
         
         if button == shareButton {
             button.addTarget(self, action: #selector(ICBMainViewController.shareButtonDidPress), for: .touchUpInside)
-        } else {
+        } else if button == speechSynthesizerButton {
             button.addTarget(self, action: #selector(ICBMainViewController.speechSynthButtonDidPress), for: .touchUpInside)
         }
     }
@@ -80,6 +80,8 @@ class ICBMainViewController: UIViewController {
     // MARK: - comicView configurations
     
     fileprivate func configureComicView() {
+        print("ComicView \(comicView.center) frame \(comicView.frame)")
+        print("backComicView \(backComicView.center) frame \(backComicView.frame)")
         comicViewInitialCenterPosition = comicView.center
         comicView.isUserInteractionEnabled = true
         addPanGestureRecognizer()
@@ -118,22 +120,34 @@ class ICBMainViewController: UIViewController {
             if movableView.center.x < 20.0 { // Swipe to the left
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
+                }, completion: {(true) in
+                    self.resetViewToInitialPosition(view: movableView)
                 })
                 return
             } else if movableView.center.x > view.frame.width - 20.0 { // Swipe to the right
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x + self.view.frame.width, y: movableView.center.y)
+                }, completion: {(true) in
+                    self.resetViewToInitialPosition(view: movableView)
                 })
                 return
             }
             
             UIView.animate(withDuration: 0.2, animations: { // Back to the initial position
-                movableView.center = self.comicViewInitialCenterPosition
-                movableView.transform = .identity
+                self.resetViewToInitialPosition(view: movableView)
             })
             
         default:
             return
         }
+    }
+    
+    fileprivate func resetViewToInitialPosition(view: UIView) {
+        self.backComicView.alpha = 0.0
+        view.center = self.comicViewInitialCenterPosition
+        view.transform = .identity
+        print("Reset")
+        print("ComicView \(comicView.center) frame \(comicView.frame)")
+        print("backComicView \(backComicView.center) frame \(backComicView.frame)")
     }
 }
