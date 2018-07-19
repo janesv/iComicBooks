@@ -20,6 +20,7 @@ class ICBMainViewController: UIViewController {
     @IBOutlet var speechSynthesizerButton: UIButton!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var comicView: ICBSingleComicView!
+    @IBOutlet var backComicView: ICBSingleComicView!
     
     fileprivate var speechSynthButtonIsPressed = false
     fileprivate var comicViewInitialCenterPosition = CGPoint()
@@ -101,16 +102,19 @@ class ICBMainViewController: UIViewController {
     }
     
     fileprivate func addTiltAnimation(toView movableView: UIView) {
-        let tiltAngle: CGFloat = 0.61 // Radians expression for 35 degrees
+        let tiltAngle: CGFloat = 0.61 // 0.61 - radians expression for 35 degrees
         let distanceMoved = movableView.center.x - comicViewInitialCenterPosition.x
         let distanceShouldBeCovered = view.frame.size.width / tiltAngle
         let rotationAngle = distanceMoved / distanceShouldBeCovered
         
         movableView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        self.backComicView.alpha = abs(distanceMoved) / view.center.x // Add fade-in animation to view
     }
     
     fileprivate func addSwipeGesture(_ recognizer: UIPanGestureRecognizer, toView movableView: UIView) {
-        if recognizer.state == UIGestureRecognizerState.ended {
+        let recognizerState = recognizer.state
+        switch recognizerState {
+        case .ended:
             if movableView.center.x < 20.0 { // Swipe to the left
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
@@ -127,6 +131,9 @@ class ICBMainViewController: UIViewController {
                 movableView.center = self.comicViewInitialCenterPosition
                 movableView.transform = .identity
             })
+            
+        default:
+            return
         }
     }
 }
