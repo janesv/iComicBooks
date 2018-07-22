@@ -10,6 +10,7 @@
 		5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */; };
 		5458F25720FE1C0D0018B0F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25620FE1C0D0018B0F9 /* Assets.xcassets */; };
 		5458F25A20FE1C0D0018B0F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25820FE1C0D0018B0F9 /* LaunchScreen.storyboard */; };
+		546356542105123800A14575 /* SpeechSynthesizerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546356532105123800A14575 /* SpeechSynthesizerExtensions.swift */; };
 		54D242C320FE3FE600EB132B /* ICBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242C220FE3FE600EB132B /* ICBMainViewController.swift */; };
 		54D242C520FE401300EB132B /* ICBMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54D242C420FE401300EB132B /* ICBMainViewController.xib */; };
 		54D242CB20FE651800EB132B /* ICBDesignConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */; };
@@ -26,6 +27,7 @@
 		5458F25620FE1C0D0018B0F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5458F25920FE1C0D0018B0F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5458F25B20FE1C0D0018B0F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		546356532105123800A14575 /* SpeechSynthesizerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerExtensions.swift; sourceTree = "<group>"; };
 		54D242C220FE3FE600EB132B /* ICBMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBMainViewController.swift; sourceTree = "<group>"; };
 		54D242C420FE401300EB132B /* ICBMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ICBMainViewController.xib; sourceTree = "<group>"; };
 		54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBDesignConstantsFile.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 				54D242C820FE63C400EB132B /* Supporting Files */,
 			);
 			path = iComicBooks;
+			sourceTree = "<group>";
+		};
+		546356522105120100A14575 /* SpeechSynthesizerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				546356532105123800A14575 /* SpeechSynthesizerExtensions.swift */,
+			);
+			path = SpeechSynthesizerExtensions;
 			sourceTree = "<group>";
 		};
 		54D242C020FE3F8100EB132B /* ICBMainViewController */ = {
@@ -141,6 +151,7 @@
 		54D242DE20FF6E4600EB132B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				546356522105120100A14575 /* SpeechSynthesizerExtensions */,
 				54D242DF20FF6E4E00EB132B /* UIImageViewExtensions */,
 			);
 			path = Extensions;
@@ -254,6 +265,7 @@
 				54D242CB20FE651800EB132B /* ICBDesignConstantsFile.swift in Sources */,
 				54D242DD20FF6E1E00EB132B /* ICBSingleComicView.swift in Sources */,
 				54D242C320FE3FE600EB132B /* ICBMainViewController.swift in Sources */,
+				546356542105123800A14575 /* SpeechSynthesizerExtensions.swift in Sources */,
 				54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */,
 				5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */,
 				54D242E120FF6F0900EB132B /* UIImageViewExtensions.swift in Sources */,
