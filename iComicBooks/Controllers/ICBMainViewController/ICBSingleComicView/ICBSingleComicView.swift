@@ -15,7 +15,7 @@ import UIKit
 */
 
 class ICBSingleComicView: UIView {
-        
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -28,8 +28,16 @@ class ICBSingleComicView: UIView {
         self.backgroundColor = UIColor.clear
         
         let comicImgViewFrame = CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height)
-        let comicImgView = UIImageView.init(frame: comicImgViewFrame)
-        comicImgView.makeImageViewRoundedWithColoredFrame(color: .redComicViewFrameColor)
+        let comicImgView = UIImageView(frame: comicImgViewFrame)
+        comicImgView.makeImageViewRoundedWithColoredBorders(color: .redComicViewBorderColor)
         self.addSubview(comicImgView)
+        
+    }
+}
+
+extension ICBSingleComicView {
+    func setImage(fromLink link: String) {
+        let imgView = self.subviews[0].subviews[0] as! UIImageView
+        imgView.downloadedFrom(link: link)
     }
 }
