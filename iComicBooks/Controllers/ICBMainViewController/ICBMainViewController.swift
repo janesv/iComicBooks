@@ -38,6 +38,7 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
         
         backgroundView.backgroundColor = .mainBackgroundColor
         speechSynthesizer.delegate = self
+        becomeFirstResponder()
         
         showLastComic()
         
@@ -146,6 +147,22 @@ extension ICBMainViewController {
     
     // MARK: - Gestures
     
+    // MARK: Shake gestures
+    
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            let randomComicId = Int(arc4random_uniform(42)) + 1
+            currentComicId = "/\(randomComicId)"
+            reloadData()
+        }
+    }
+
     // MARK: Swipe gestures
     
     fileprivate func addSwipeGestureRecognizer() {
