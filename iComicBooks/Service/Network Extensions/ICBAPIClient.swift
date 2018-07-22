@@ -45,10 +45,10 @@ class ICBAPIClient {
     
     /**
         Get data from the API Client with additional parameters.
-        - parameter param: comic id. If it's empty, this very comic is the last one.
+        - parameter comicId: comic id. If it's empty, this very comic is the last one.
      */
-    func getDataFrom(withParameters param: String?, completionHandler: @escaping (ICBComicResult) -> ()) {
-        self.baseURL = URL(string: "\(ICBAPIClientBaseURLString)\(param ?? "")/info.0.json")!
+    func getDataFrom(withParameters comicId: String, completionHandler: @escaping (ICBComicResult) -> ()) {
+        self.baseURL = URL(string: "\(ICBAPIClientBaseURLString)\(comicId)/info.0.json")!
         self.baseURL.make(completionHandler: completionHandler)
     }
 }

@@ -29,14 +29,17 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     fileprivate var movableComicView = UIView()
     fileprivate var textSpeechUtterance = String()
     fileprivate let speechSynthesizer = SpeechSynthesizer()
+    fileprivate var currentComicId = String()
+    fileprivate var lastComicId = Int()
+    fileprivate var comics: [Int] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         backgroundView.backgroundColor = .mainBackgroundColor
-        self.speechSynthesizer.delegate = self
+        speechSynthesizer.delegate = self
         
-        reloadData()
+        showLastComic()
         
         configureComicTitleLabel()
         configureButtons()
@@ -46,21 +49,38 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     
     fileprivate func reloadData() {
         let apiClient = ICBAPIClient.shared()
-        apiClient.getDataFrom(withParameters: "/2022") { (result) in
+        apiClient.getDataFrom(withParameters: currentComicId) { (result) in
             switch result {
             case let .error(error):
                 print(error)
                 return
             case let .result(result):
                 DispatchQueue.main.async {
-                    self.comicTitleLabel.text = result.title
+                    self.comicTitleLabel.text = "#\(result.num) \(result.title)"
                     self.comicView.setImage(fromLink: result.img)
                     self.backComicView.setImage(fromLink: result.img)
                     self.textSpeechUtterance = result.transcript!
+                    self.comics.append(result.num)
+                    self.lastComicId = result.num
                 }
                 return
             }
         }
+    }
+    
+    fileprivate func showLastComic() {
+        currentComicId = "" // Current comic will be shown
+        reloadData()
+    }
+    
+    fileprivate func showPreviousComic() {
+        currentComicId = "/\(String(lastComicId - 1))"
+        reloadData()
+    }
+    
+    fileprivate func showNextComic() {
+        currentComicId = "/\(String(lastComicId + 1))"
+        reloadData()
     }
 }
 
@@ -137,20 +157,27 @@ extension ICBMainViewController {
     }
     
     @objc func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
-        var moveViewCenterPositionX = CGFloat()
+        if lastComicId < 1 {
+            return
+        }
+        
+        showPreviousComic()
+        
+        var movableViewCenterPositionX = CGFloat()
+        movableComicView = comicView
         
         switch recognizer.direction {
         case .left:
-            moveViewCenterPositionX = comicViewInitialCenterPosition.x + view.frame.width
+            movableViewCenterPositionX = comicViewInitialCenterPosition.x + view.frame.width
         case .right:
-            moveViewCenterPositionX = comicViewInitialCenterPosition.x - view.frame.width
+            movableViewCenterPositionX = comicViewInitialCenterPosition.x - view.frame.width
         default:
             return
         }
         
-        movableComicView.center.x = moveViewCenterPositionX
+        movableComicView.center.x = movableViewCenterPositionX
         addTiltAnimation(toView: movableComicView)
-        UIView.animate(withDuration: 0.3, animations: { // Back to the initial position
+        UIView.animate(withDuration: 0.4, animations: { // Back to the initial position
             self.resetComicViewToInitialPosition(self.movableComicView)
         })
     }
@@ -163,9 +190,13 @@ extension ICBMainViewController {
     }
     
     @objc fileprivate func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+        let lastComicOnScreen = lastComicId >= comics.first!
+        if lastComicOnScreen {
+            return
+        }
+        
         let translation = recognizer.translation(in: view)
         if let movableView = recognizer.view {
-            movableComicView = movableView
             movableView.center = CGPoint(x: comicViewInitialCenterPosition.x + translation.x, y: comicViewInitialCenterPosition.y + translation.y)
             addTiltAnimation(toView: movableView)
             addSwipeGesture(recognizer, toView: movableView)
@@ -188,12 +219,14 @@ extension ICBMainViewController {
      */
     fileprivate func addSwipeGesture(_ recognizer: UIPanGestureRecognizer, toView movableView: UIView) {
         let recognizerState = recognizer.state
+        
         switch recognizerState {
         case .ended:
             if movableView.center.x < 20.0 { // Swipe to the left
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
                 }, completion: {(true) in
+                    self.showNextComic()
                     self.resetComicViewToInitialPosition(movableView)
                 })
                 return
@@ -201,6 +234,7 @@ extension ICBMainViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x + self.view.frame.width, y: movableView.center.y)
                 }, completion: {(true) in
+                    self.showNextComic()
                     self.resetComicViewToInitialPosition(movableView)
                 })
                 return
