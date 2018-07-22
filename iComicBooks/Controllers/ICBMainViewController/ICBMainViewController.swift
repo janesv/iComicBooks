@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 /**
     ICBMainViewController is a main view controller class.
     It also contains methods to make comic view swipeable.
 */
 
-class ICBMainViewController: UIViewController {
+class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var comicTitleLabel: UILabel!
@@ -26,12 +27,15 @@ class ICBMainViewController: UIViewController {
     fileprivate var speechSynthButtonIsPressed = false
     fileprivate var comicViewInitialCenterPosition = CGPoint()
     fileprivate var movableComicView = UIView()
+    fileprivate var textSpeechUtterance = String()
+    fileprivate let speechSynthesizer = SpeechSynthesizer()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         backgroundView.backgroundColor = .mainBackgroundColor
-
+        self.speechSynthesizer.delegate = self
+        
         reloadData()
         
         configureComicTitleLabel()
@@ -52,6 +56,7 @@ class ICBMainViewController: UIViewController {
                     self.comicTitleLabel.text = result.title
                     self.comicView.setImage(fromLink: result.img)
                     self.backComicView.setImage(fromLink: result.img)
+                    self.textSpeechUtterance = result.transcript!
                 }
                 return
             }
@@ -92,14 +97,22 @@ extension ICBMainViewController {
         
     }
     
+    // MARK: Speech synthesizer
+    
     @objc fileprivate func speechSynthButtonDidPress() {
         if speechSynthButtonIsPressed {
-            speechSynthesizerButton.setImage(ButtonImages.speechSynth.normalState, for: .normal)
-            speechSynthButtonIsPressed = false
-        } else {
-            speechSynthesizerButton.setImage(ButtonImages.speechSynth.pressedState, for: .normal)
-            speechSynthButtonIsPressed = true
+            speechSynthesizer.stopSpeaking()
+            return
         }
+        
+        speechSynthesizerButton.setImage(ButtonImages.speechSynth.pressedState, for: .normal)
+        speechSynthButtonIsPressed = true
+        speechSynthesizer.startSpeaking(text: textSpeechUtterance)
+    }
+    
+    func speechDidFinish() {
+        speechSynthesizerButton.setImage(ButtonImages.speechSynth.normalState, for: .normal)
+        speechSynthButtonIsPressed = false
     }
     
     // MARK: - comicView configurations
