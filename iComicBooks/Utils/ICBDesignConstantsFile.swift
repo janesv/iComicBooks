@@ -17,6 +17,9 @@ import UIKit
 
 extension UIColor {
     static let mainBackgroundColor = UIColor(red: 0.11, green: 0.12, blue: 0.18, alpha: 1.0)
+    static let redComicViewBorderColor = UIColor(red: 0.73, green: 0.04, blue: 0.16, alpha: 1.0)
+    static let yellowComicViewBorderColor = UIColor(red: 1.0, green: 0.75, blue: 0.0, alpha: 1.0)
+    static let blueComicViewBorderColor = UIColor(red: 0.16, green: 0.57, blue: 0.75, alpha: 1.0)
 }
 
 // MARK: - Fonts
