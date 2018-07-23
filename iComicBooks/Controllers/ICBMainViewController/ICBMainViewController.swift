@@ -31,7 +31,7 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     fileprivate let speechSynthesizer = SpeechSynthesizer()
     fileprivate var currentComicId = String()
     fileprivate var lastComicId = Int()
-    fileprivate var comics: [Int] = []
+    fileprivate var comics: [ICBComic] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
                     self.comicView.setImage(fromLink: result.img)
                     self.backComicView.setImage(fromLink: result.img)
                     self.textSpeechUtterance = result.transcript!
-                    self.comics.append(result.num)
+                    self.comics.append(result)
                     self.lastComicId = result.num
                 }
                 return
@@ -106,16 +106,20 @@ extension ICBMainViewController {
         button.setImage(image, for: .normal)
         
         if button == shareButton {
+            button.setImage(ButtonImages.share.pressedState, for: .highlighted)
             button.addTarget(self, action: #selector(ICBMainViewController.shareButtonDidPress), for: .touchUpInside)
         } else if button == speechSynthesizerButton {
             button.addTarget(self, action: #selector(ICBMainViewController.speechSynthButtonDidPress), for: .touchUpInside)
         }
     }
     
-    // MARK: Button press processing
+    // MARK: - Button press processing
+    
+    // MARK: Share comic
     
     @objc fileprivate func shareButtonDidPress() {
-        
+        let activityShareVC = UIActivityViewController(activityItems: [comics.last!.img], applicationActivities: nil)
+        self.present(activityShareVC, animated: true, completion: nil)
     }
     
     // MARK: Speech synthesizer
@@ -207,7 +211,7 @@ extension ICBMainViewController {
     }
     
     @objc fileprivate func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
-        let lastComicOnScreen = lastComicId >= comics.first!
+        let lastComicOnScreen = lastComicId >= comics.first!.num
         if lastComicOnScreen {
             return
         }
