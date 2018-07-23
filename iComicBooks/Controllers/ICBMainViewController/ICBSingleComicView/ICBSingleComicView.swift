@@ -15,7 +15,7 @@ import UIKit
 */
 
 class ICBSingleComicView: UIView {
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

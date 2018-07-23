@@ -22,7 +22,6 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     @IBOutlet var speechSynthesizerButton: UIButton!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var comicView: ICBSingleComicView!
-    @IBOutlet var backComicView: ICBSingleComicView!
     
     fileprivate var speechSynthButtonIsPressed = false
     fileprivate var comicViewInitialCenterPosition = CGPoint()
@@ -59,7 +58,6 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
                 DispatchQueue.main.async {
                     self.comicTitleLabel.text = "#\(result.num) \(result.title)"
                     self.comicView.setImage(fromLink: result.img)
-                    self.backComicView.setImage(fromLink: result.img)
                     self.textSpeechUtterance = result.transcript!
                     self.comics.append(result)
                     self.lastComicId = result.num
@@ -126,6 +124,7 @@ extension ICBMainViewController {
     
     @objc fileprivate func speechSynthButtonDidPress() {
         if speechSynthButtonIsPressed {
+            speechDidFinish()
             speechSynthesizer.stopSpeaking()
             return
         }
@@ -231,7 +230,6 @@ extension ICBMainViewController {
         let rotationAngle = distanceMoved / distanceShouldBeCovered
         
         movableView.transform = CGAffineTransform(rotationAngle: rotationAngle)
-        self.backComicView.alpha = abs(distanceMoved) / view.center.x // Add fade-in animation to view
     }
     
     /**
@@ -270,7 +268,6 @@ extension ICBMainViewController {
     }
     
     fileprivate func resetComicViewToInitialPosition(_ view: UIView) {
-        self.backComicView.alpha = 0.0
         view.center = self.comicViewInitialCenterPosition
         view.transform = .identity
     }
