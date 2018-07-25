@@ -276,7 +276,9 @@ extension ICBMainViewController {
         switch recognizerState {
         case .ended:
             if movableView.center.x < 20.0 { // Swipe to the left
+                
                 if lastComicId <= 1 {
+                    resetViewToInitialPosition(movableView, withDuration: 0.2)
                     return
                 }
                 
@@ -293,6 +295,7 @@ extension ICBMainViewController {
             } else if movableView.center.x > view.frame.width - 20.0 { // Swipe to the right
 
                 if lastComicId >= comics.first!.num {
+                    resetViewToInitialPosition(movableView, withDuration: 0.2)
                     return
                 }
                 
