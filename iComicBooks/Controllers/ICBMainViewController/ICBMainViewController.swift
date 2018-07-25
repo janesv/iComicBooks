@@ -15,7 +15,10 @@ import AVFoundation
     It also contains methods to make comic view swipeable.
 */
 
-enum ComicQueueLoad {
+/**
+    Type of a loading comic.
+*/
+enum ComicLoadingType {
     case nextComic
     case previousComic
     case currentComic
@@ -37,7 +40,7 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     fileprivate var currentComicId = String()
     fileprivate var lastComicId = Int()
     fileprivate var comics: [ICBComic] = []
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +55,8 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
         configureComicView()
     }
 }
+
+// MARK: - Load and setup data
 
 fileprivate extension ICBMainViewController {
     /**
@@ -71,6 +76,7 @@ fileprivate extension ICBMainViewController {
                     self.textSpeechUtterance = result.transcript!
                     self.comics.append(result)
                     self.lastComicId = result.num
+                    self.comicView.changeBorderColor()
                 }
                 return
             }
@@ -80,7 +86,7 @@ fileprivate extension ICBMainViewController {
     /**
         Show neсessery comic
      */
-    func show(_ comicQueue: ComicQueueLoad) {
+    func show(_ comicQueue: ComicLoadingType) {
         var comicIdString = String()
         switch comicQueue {
         case .currentComic:
@@ -97,9 +103,11 @@ fileprivate extension ICBMainViewController {
     }
 }
 
-extension ICBMainViewController {
+// MARK: - Configuration
+
+fileprivate extension ICBMainViewController {
     
-    // MARK: - Label configurations
+    // MARK: Label configurations
     
     fileprivate func configureComicTitleLabel() {
         comicTitleLabel.textColor = UIColor.white
@@ -107,7 +115,7 @@ extension ICBMainViewController {
         comicTitleLabel.textAlignment = .center
     }
     
-    // MARK: - Button configurations
+    // MARK: Button configurations
     
     fileprivate func configureButtons() {
         configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
@@ -125,7 +133,19 @@ extension ICBMainViewController {
         }
     }
     
-    // MARK: - Button press processing
+    // MARK: - comicView configurations
+    
+    fileprivate func configureComicView() {
+        comicViewInitialCenterPosition = comicView.center
+        comicView.isUserInteractionEnabled = true
+        addPanGestureRecognizer()
+        addSwipeGestureRecognizer()
+    }
+}
+
+// MARK: - Button press processing
+
+extension ICBMainViewController {
     
     // MARK: Share comic
     
@@ -152,19 +172,12 @@ extension ICBMainViewController {
         speechSynthesizerButton.setImage(ButtonImages.speechSynth.normalState, for: .normal)
         speechSynthButtonIsPressed = false
     }
-    
-    // MARK: - comicView configurations
-    
-    fileprivate func configureComicView() {
-        comicViewInitialCenterPosition = comicView.center
-        comicView.isUserInteractionEnabled = true
-        addPanGestureRecognizer()
-        addSwipeGestureRecognizer()
-    }
-    
-    // MARK: - Gestures
-    
-    // MARK: Shake gestures
+}
+
+// MARK: - Gestures
+
+extension ICBMainViewController {
+    // MARK: Shake gesture
     
     override var canBecomeFirstResponder: Bool {
         get {
@@ -178,7 +191,7 @@ extension ICBMainViewController {
         }
     }
 
-    // MARK: Swipe gestures
+    // MARK: Swipe gesture
     
     fileprivate func addSwipeGestureRecognizer() {
         [UISwipeGestureRecognizerDirection.left, .right].forEach({
@@ -189,20 +202,25 @@ extension ICBMainViewController {
     }
     
     @objc func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
-        if lastComicId <= 1 {
-            return
-        }
-        
-        var comicViewCenterPosX = CGFloat()
-        var comicViewInversePosX = CGFloat()
+        var comicViewCenterPosX = comicViewInitialCenterPosition.x
+        var comicViewInversePosX = comicViewCenterPosX
+        var comicLoadingType: ComicLoadingType
         
         switch recognizer.direction {
         case .right:
-            comicViewCenterPosX = comicViewInitialCenterPosition.x + 2 * view.frame.width
-            comicViewInversePosX = comicViewInitialCenterPosition.x - 2 * view.frame.width
+            if lastComicId >= comics.first!.num {
+                return
+            }
+            comicViewCenterPosX += 2 * view.frame.width
+            comicViewInversePosX -= 2 * view.frame.width
+            comicLoadingType = .nextComic
         case .left:
-            comicViewCenterPosX = comicViewInitialCenterPosition.x - 2 * view.frame.width
-            comicViewInversePosX = comicViewInitialCenterPosition.x + 2 * view.frame.width
+            if lastComicId <= 1 {
+                return
+            }
+            comicViewCenterPosX -= 2 * view.frame.width
+            comicViewInversePosX += 2 * view.frame.width
+            comicLoadingType = .previousComic
         default:
             return
         }
@@ -215,16 +233,16 @@ extension ICBMainViewController {
                 self.comicView.center = CGPoint(x: comicViewCenterPosX, y: self.comicViewInitialCenterPosition.x / 2.0)
                 self.addTiltAnimation(toView: self.comicView)
             }, completion: {(true) in
-                self.show(.previousComic)
+                self.show(comicLoadingType)
                 self.comicView.center = CGPoint(x: comicViewInversePosX, y: self.comicView.center.y - self.comicViewInitialCenterPosition.x / 2.0)
-                self.resetViewToInitialPosition(self.comicView, withDuration: 0.2)
+                self.resetViewToInitialPosition(self.comicView, withDuration: 0.3)
             })
         default:
             return
         }
     }
     
-    // MARK: Pan gestures
+    // MARK: Pan gesture
     
     fileprivate func addPanGestureRecognizer() {
         let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture))
@@ -250,31 +268,34 @@ extension ICBMainViewController {
     }
     
     /**
-        Make view swipe-out of the screen.
+        Swipe-out a given view of the screen.
         - parameter movableView: a view that would be swiped-out.
      */
     fileprivate func addSwipeOutGesture(_ recognizer: UIPanGestureRecognizer, toView movableView: UIView) {
         let recognizerState = recognizer.state
-        let lastComicOnScreen = lastComicId >= comics.first!.num
-
         switch recognizerState {
         case .ended:
-            if lastComicOnScreen {
-                resetViewToInitialPosition(movableView, withDuration: 0.2)
-                return
-            }
-            
             if movableView.center.x < 20.0 { // Swipe to the left
+                if lastComicId <= 1 {
+                    return
+                }
+                
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
                 }, completion: {(true) in
-                    self.show(.nextComic)
+                    self.show(.previousComic)
                 })
+                
                 movableView.center = CGPoint(x: movableView.center.x + 2 * self.view.frame.width, y: movableView.center.y)
                 resetViewToInitialPosition(movableView, withDuration: 0.4)
 
                 return
             } else if movableView.center.x > view.frame.width - 20.0 { // Swipe to the right
+
+                if lastComicId >= comics.first!.num {
+                    return
+                }
+                
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x + self.view.frame.width, y: movableView.center.y)
                 }, completion: {(true) in
@@ -292,6 +313,9 @@ extension ICBMainViewController {
         }
     }
     
+    /**
+        Reset given view to initial position of comic view using the specified duration
+     */
     fileprivate func resetViewToInitialPosition(_ view: UIView, withDuration duration: TimeInterval) {
         UIView.animate(withDuration: duration, animations: {
             view.center = self.comicViewInitialCenterPosition

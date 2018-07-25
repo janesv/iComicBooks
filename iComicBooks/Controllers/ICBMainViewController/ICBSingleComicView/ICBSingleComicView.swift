@@ -15,10 +15,16 @@ import UIKit
 */
 
 class ICBSingleComicView: UIView {
+    
+    fileprivate var borderColorArray: [UIColor] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
+        borderColorArray = [UIColor.comicViewBorderColor.red,
+                            UIColor.comicViewBorderColor.yellow,
+                            UIColor.comicViewBorderColor.blue]
+        
         configureComicView()
     }
     
@@ -29,15 +35,26 @@ class ICBSingleComicView: UIView {
         
         let comicImgViewFrame = CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height)
         let comicImgView = UIImageView(frame: comicImgViewFrame)
-        comicImgView.makeImageViewRoundedWithColoredBorders(color: .redComicViewBorderColor)
+        comicImgView.makeImageViewRoundedWithColoredBorders()
         self.addSubview(comicImgView)
-        
     }
 }
 
 extension ICBSingleComicView {
+    /**
+        Set image to ICBSingleComicView downloaded via given link
+     */
     func setImage(fromLink link: String) {
         let imgView = self.subviews[0].subviews[0] as! UIImageView
         imgView.downloadedFrom(link: link)
+    }
+    
+    /**
+        Change border color of ICBSingleComicView.
+        Color will be chosen randomically from array of border colors
+     */
+    func changeBorderColor() {
+        let randomColor = Int(arc4random_uniform(3))
+        self.subviews[0].backgroundColor = borderColorArray[randomColor]
     }
 }
