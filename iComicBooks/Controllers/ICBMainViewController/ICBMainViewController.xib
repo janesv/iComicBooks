@@ -54,7 +54,7 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-bs-fiN" customClass="ICBSingleComicView" customModule="iComicBooks" customModuleProvider="target">
-                            <rect key="frame" x="40" y="55.5" width="240" height="432.5"/>
+                            <rect key="frame" x="15" y="55.5" width="290" height="432.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -63,12 +63,18 @@
                         <constraint firstItem="fyP-W0-0ky" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="44q-Ib-pm3"/>
                         <constraint firstAttribute="trailing" secondItem="fE3-W0-J44" secondAttribute="trailing" constant="15" id="CYE-gj-hcb"/>
                         <constraint firstItem="1fT-bs-fiN" firstAttribute="top" secondItem="fE3-W0-J44" secondAttribute="bottom" constant="10" id="EtH-zF-Gbs"/>
-                        <constraint firstAttribute="trailing" secondItem="1fT-bs-fiN" secondAttribute="trailing" constant="40" id="HbI-8R-hk2"/>
+                        <constraint firstAttribute="trailing" secondItem="1fT-bs-fiN" secondAttribute="trailing" constant="15" id="HbI-8R-hk2">
+                            <variation key="heightClass=compact-widthClass=compact" constant="15"/>
+                            <variation key="heightClass=regular-widthClass=compact" constant="15"/>
+                        </constraint>
                         <constraint firstAttribute="bottom" secondItem="fyP-W0-0ky" secondAttribute="bottom" constant="16" id="JxS-2p-LMP"/>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="top" secondItem="FyT-Bs-uKd" secondAttribute="top" constant="25" id="Kvp-7g-kzz"/>
-                        <constraint firstItem="fyP-W0-0ky" firstAttribute="top" secondItem="1fT-bs-fiN" secondAttribute="bottom" constant="30" id="Vbw-hC-eRg"/>
+                        <constraint firstItem="fyP-W0-0ky" firstAttribute="top" secondItem="1fT-bs-fiN" secondAttribute="bottom" constant="30" id="Vbw-hC-eRg">
+                            <variation key="heightClass=compact-widthClass=compact" constant="30"/>
+                            <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                        </constraint>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="15" id="ZGr-GQ-MHJ"/>
-                        <constraint firstItem="1fT-bs-fiN" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="40" id="eku-3G-d12"/>
+                        <constraint firstItem="1fT-bs-fiN" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="15" id="eku-3G-d12"/>
                         <constraint firstItem="1fT-bs-fiN" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="hmz-Qr-DZ3"/>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="n0R-vz-UHD"/>
                     </constraints>

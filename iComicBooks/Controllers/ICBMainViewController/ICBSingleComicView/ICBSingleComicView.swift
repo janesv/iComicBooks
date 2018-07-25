@@ -17,7 +17,7 @@ import UIKit
 class ICBSingleComicView: UIView {
     
     fileprivate var borderColorArray: [UIColor] = []
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -54,7 +54,8 @@ extension ICBSingleComicView {
         Color will be chosen randomically from array of border colors
      */
     func changeBorderColor() {
-        let randomColor = Int(arc4random_uniform(3))
-        self.subviews[0].backgroundColor = borderColorArray[randomColor]
+        let randomIndex = Int(arc4random_uniform(3))
+        let randomColor = borderColorArray[randomIndex]
+        self.subviews[0].backgroundColor = randomColor
     }
 }
