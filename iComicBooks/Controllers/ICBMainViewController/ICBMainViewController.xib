@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ICBMainViewController" customModule="iComicBooks" customModuleProvider="target">
             <connections>
-                <outlet property="backComicView" destination="9C9-nI-eFV" id="vqO-8C-wn5"/>
                 <outlet property="backgroundView" destination="FyT-Bs-uKd" id="DvA-4I-mnU"/>
                 <outlet property="comicTitleLabel" destination="fE3-W0-J44" id="hJ6-1s-hdd"/>
                 <outlet property="comicView" destination="1fT-bs-fiN" id="pNg-OQ-stL"/>
@@ -54,10 +53,6 @@
                                 <constraint firstAttribute="bottom" secondItem="jkT-82-ZUm" secondAttribute="bottom" id="zhO-do-NgW"/>
                             </constraints>
                         </stackView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9C9-nI-eFV" customClass="ICBSingleComicView" customModule="iComicBooks" customModuleProvider="target">
-                            <rect key="frame" x="40" y="55.5" width="240" height="432.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-bs-fiN" customClass="ICBSingleComicView" customModule="iComicBooks" customModuleProvider="target">
                             <rect key="frame" x="40" y="55.5" width="240" height="432.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,20 +61,16 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="fyP-W0-0ky" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="44q-Ib-pm3"/>
-                        <constraint firstItem="9C9-nI-eFV" firstAttribute="top" secondItem="fE3-W0-J44" secondAttribute="bottom" constant="10" id="9ay-FL-W6v"/>
                         <constraint firstAttribute="trailing" secondItem="fE3-W0-J44" secondAttribute="trailing" constant="15" id="CYE-gj-hcb"/>
                         <constraint firstItem="1fT-bs-fiN" firstAttribute="top" secondItem="fE3-W0-J44" secondAttribute="bottom" constant="10" id="EtH-zF-Gbs"/>
                         <constraint firstAttribute="trailing" secondItem="1fT-bs-fiN" secondAttribute="trailing" constant="40" id="HbI-8R-hk2"/>
                         <constraint firstAttribute="bottom" secondItem="fyP-W0-0ky" secondAttribute="bottom" constant="16" id="JxS-2p-LMP"/>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="top" secondItem="FyT-Bs-uKd" secondAttribute="top" constant="25" id="Kvp-7g-kzz"/>
                         <constraint firstItem="fyP-W0-0ky" firstAttribute="top" secondItem="1fT-bs-fiN" secondAttribute="bottom" constant="30" id="Vbw-hC-eRg"/>
-                        <constraint firstAttribute="trailing" secondItem="9C9-nI-eFV" secondAttribute="trailing" constant="40" id="WAh-Sq-t5x"/>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="15" id="ZGr-GQ-MHJ"/>
                         <constraint firstItem="1fT-bs-fiN" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="40" id="eku-3G-d12"/>
                         <constraint firstItem="1fT-bs-fiN" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="hmz-Qr-DZ3"/>
-                        <constraint firstItem="fyP-W0-0ky" firstAttribute="top" secondItem="9C9-nI-eFV" secondAttribute="bottom" constant="30" id="j9b-4k-j3D"/>
                         <constraint firstItem="fE3-W0-J44" firstAttribute="centerX" secondItem="FyT-Bs-uKd" secondAttribute="centerX" id="n0R-vz-UHD"/>
-                        <constraint firstItem="9C9-nI-eFV" firstAttribute="leading" secondItem="FyT-Bs-uKd" secondAttribute="leading" constant="40" id="s83-9j-9ka"/>
                     </constraints>
                 </view>
             </subviews>

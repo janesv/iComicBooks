@@ -14,7 +14,7 @@ import UIKit
 */
 
 extension UIImageView {
-    func makeImageViewRoundedWithColoredBorders(color: UIColor) {
+    func makeImageViewRoundedWithColoredBorders(color: UIColor = UIColor.borderColor.red) {
         self.backgroundColor = color
         self.makeImageViewRounded(radius: 15.0)
         
