@@ -45,5 +45,7 @@ struct ButtonImages {
         static let normalState = #imageLiteral(resourceName: "shareButtonIcon")
         static let pressedState = #imageLiteral(resourceName: "sharePressedButtonIcon")
     }
+    
+    static let fullScreenClose = #imageLiteral(resourceName: "cancelButtonIcon")
 }
 

@@ -138,8 +138,10 @@ fileprivate extension ICBMainViewController {
     fileprivate func configureComicView() {
         comicViewInitialCenterPosition = comicView.center
         comicView.isUserInteractionEnabled = true
+        
         addPanGestureRecognizer()
         addSwipeGestureRecognizer()
+        addTapGesture()
     }
 }
 
@@ -177,6 +179,21 @@ extension ICBMainViewController {
 // MARK: - Gestures
 
 extension ICBMainViewController {
+    
+    // MARK: Tap gesture
+    
+    fileprivate func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        comicView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+        let fullScreenController = ICBFullScreenController()
+        fullScreenController.configure(withView: comicView)
+
+        present(fullScreenController, animated: true, completion: nil)
+    }
+    
     // MARK: Shake gesture
     
     override var canBecomeFirstResponder: Bool {
