@@ -19,9 +19,13 @@
 		54D242E120FF6F0900EB132B /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E020FF6F0900EB132B /* UIImageViewExtensions.swift */; };
 		54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E42100F7FF00EB132B /* ICBAPIClient.swift */; };
 		54D242E82101010500EB132B /* ICBComicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E72101010500EB132B /* ICBComicObject.swift */; };
+		87C8E6A6647BC24779457221 /* Pods_iComicBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055139E814F4080635832CA0 /* Pods-iComicBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iComicBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iComicBooks/Pods-iComicBooks.debug.xcconfig"; sourceTree = "<group>"; };
+		1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iComicBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A61488846D379F9F0D85DC0 /* Pods-iComicBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iComicBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-iComicBooks/Pods-iComicBooks.release.xcconfig"; sourceTree = "<group>"; };
 		5458F24C20FE1C0B0018B0F9 /* iComicBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iComicBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5458F25620FE1C0D0018B0F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,17 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C8E6A6647BC24779457221 /* Pods_iComicBooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47B74D464F0BA6322D8F39B6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				055139E814F4080635832CA0 /* Pods-iComicBooks.debug.xcconfig */,
+				4A61488846D379F9F0D85DC0 /* Pods-iComicBooks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5458F24320FE1C0B0018B0F9 = {
 			isa = PBXGroup;
 			children = (
 				5458F24E20FE1C0B0018B0F9 /* iComicBooks */,
 				5458F24D20FE1C0B0018B0F9 /* Products */,
+				47B74D464F0BA6322D8F39B6 /* Pods */,
+				C0C9B59649872340459008A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +213,14 @@
 			path = "Network Extensions";
 			sourceTree = "<group>";
 		};
+		C0C9B59649872340459008A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5458F25E20FE1C0D0018B0F9 /* Build configuration list for PBXNativeTarget "iComicBooks" */;
 			buildPhases = (
+				3ED339B801EB10DD203D6553 /* [CP] Check Pods Manifest.lock */,
 				5458F24820FE1C0B0018B0F9 /* Sources */,
 				5458F24920FE1C0B0018B0F9 /* Frameworks */,
 				5458F24A20FE1C0B0018B0F9 /* Resources */,
@@ -263,6 +288,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3ED339B801EB10DD203D6553 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iComicBooks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5458F24820FE1C0B0018B0F9 /* Sources */ = {
@@ -410,6 +456,7 @@
 		};
 		5458F25F20FE1C0D0018B0F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 055139E814F4080635832CA0 /* Pods-iComicBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,6 +475,7 @@
 		};
 		5458F26020FE1C0D0018B0F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A61488846D379F9F0D85DC0 /* Pods-iComicBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
