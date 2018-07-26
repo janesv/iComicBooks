@@ -13,6 +13,7 @@
 		546356542105123800A14575 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546356532105123800A14575 /* SpeechSynthesizer.swift */; };
 		5463565A21091FA600A14575 /* ICBFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463565921091FA600A14575 /* ICBFullScreenController.swift */; };
 		5463565E210939D900A14575 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463565D210939D900A14575 /* ActivityIndicator.swift */; };
+		54635666210A223200A14575 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54635665210A223200A14575 /* AlertController.swift */; };
 		54D242C320FE3FE600EB132B /* ICBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242C220FE3FE600EB132B /* ICBMainViewController.swift */; };
 		54D242C520FE401300EB132B /* ICBMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54D242C420FE401300EB132B /* ICBMainViewController.xib */; };
 		54D242CB20FE651800EB132B /* ICBDesignConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */; };
@@ -36,6 +37,7 @@
 		546356532105123800A14575 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		5463565921091FA600A14575 /* ICBFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBFullScreenController.swift; sourceTree = "<group>"; };
 		5463565D210939D900A14575 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		54635665210A223200A14575 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		54D242C220FE3FE600EB132B /* ICBMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBMainViewController.swift; sourceTree = "<group>"; };
 		54D242C420FE401300EB132B /* ICBMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ICBMainViewController.xib; sourceTree = "<group>"; };
 		54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBDesignConstantsFile.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
+		54635664210A221900A14575 /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				54635665210A223200A14575 /* AlertController.swift */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
 		54D242C020FE3F8100EB132B /* ICBMainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		54D242C920FE63F500EB132B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				54635664210A221900A14575 /* UIAlertController */,
 				5463565F2109C08B00A14575 /* ActivityIndicator */,
 				5463565521051E5800A14575 /* SpeechSynthesizer */,
 				5463565621051E9800A14575 /* Constants */,
@@ -366,6 +377,7 @@
 				546356542105123800A14575 /* SpeechSynthesizer.swift in Sources */,
 				54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */,
 				5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */,
+				54635666210A223200A14575 /* AlertController.swift in Sources */,
 				5463565A21091FA600A14575 /* ICBFullScreenController.swift in Sources */,
 				54D242E120FF6F0900EB132B /* UIImageViewExtensions.swift in Sources */,
 			);
