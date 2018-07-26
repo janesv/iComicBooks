@@ -63,6 +63,9 @@ fileprivate extension ICBMainViewController {
         Load data from API by comic id
      */
     func loadData(comicId: String) {
+        removeDataFromView()
+        let activityIndicator = self.showActivityIndicator(atView: self.view)
+        
         let apiClient = ICBAPIClient.shared()
         apiClient.getDataFrom(withParameters: comicId) { (result) in
             switch result {
@@ -71,6 +74,8 @@ fileprivate extension ICBMainViewController {
                 return
             case let .result(result):
                 DispatchQueue.main.async {
+                    self.removeActivityIndicator(activityIndicator)
+                    self.returnDataToView()
                     self.comicTitleLabel.text = "#\(result.num) \(result.title)"
                     self.comicView.setImage(fromLink: result.img)
                     self.textSpeechUtterance = result.transcript!
@@ -81,6 +86,16 @@ fileprivate extension ICBMainViewController {
                 return
             }
         }
+    }
+    
+    func removeDataFromView() {
+        comicTitleLabel.isHidden = true
+        comicView.isHidden = true
+    }
+    
+    func returnDataToView() {
+        comicTitleLabel.isHidden = false
+        comicView.isHidden = false
     }
     
     /**
@@ -99,6 +114,7 @@ fileprivate extension ICBMainViewController {
             let randomComicId = Int(arc4random_uniform(42)) + 1
             comicIdString = "/\(randomComicId)"
         }
+        
         loadData(comicId: comicIdString)
     }
 }
