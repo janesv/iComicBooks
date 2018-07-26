@@ -15,6 +15,11 @@ Surfstudio iOS Summer School project
 ### Пример работы
 <img src="https://thumbs.gfycat.com/CheeryJampackedDinosaur-size_restricted.gif" width="320" height="568" />
 
+### Техническая информация
+* Xcode Version 9.4 (9F1027a)
+* Cocoapods Version: 1.5.3
+* [xkcd JSON API](https://xkcd.com/json.html) - для получения данных комиксов
+
 ### Требования
 * iOS 10.0 or later
 
