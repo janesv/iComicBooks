@@ -37,7 +37,6 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     fileprivate var comicViewInitialCenterPosition = CGPoint()
     fileprivate var textSpeechUtterance = String()
     fileprivate let speechSynthesizer = SpeechSynthesizer()
-    fileprivate var currentComicId = String()
     fileprivate var lastComicId = Int()
     fileprivate var comics: [ICBComic] = []
     
@@ -69,8 +68,9 @@ fileprivate extension ICBMainViewController {
         let apiClient = ICBAPIClient.shared()
         apiClient.getDataFrom(withParameters: comicId) { (result) in
             switch result {
-            case let .error(error):
-                print(error)
+            case .error(_):
+                let alert = UIAlertController(title: "Error", message: "Oops... Something went wrong :(", preferredStyle: UIAlertControllerStyle.alert)
+                self.present(alert, animated: true, completion: nil)
                 return
             case let .result(result):
                 DispatchQueue.main.async {
