@@ -270,11 +270,11 @@ extension ICBMainViewController {
         switch recognizerState {
         case .ended:
             comicView.center = comicViewInitialCenterPosition
-            self.show(comicLoadingType)
             UIView.animate(withDuration: 0.4, animations: {
                 self.comicView.center = CGPoint(x: comicViewCenterPosX, y: self.comicViewInitialCenterPosition.x / 2.0)
                 self.addTiltAnimation(toView: self.comicView)
             }, completion: {(true) in
+                self.show(comicLoadingType)
                 self.comicView.center = CGPoint(x: comicViewInversePosX, y: self.comicView.center.y - self.comicViewInitialCenterPosition.x / 2.0)
                 self.resetViewToInitialPosition(self.comicView, withDuration: 0.3)
             })
