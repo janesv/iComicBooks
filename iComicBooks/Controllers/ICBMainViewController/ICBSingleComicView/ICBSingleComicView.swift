@@ -46,7 +46,7 @@ extension ICBSingleComicView {
      */
     func setImage(fromLink link: String) {
         let imgView = self.subviews[0].subviews[0] as! UIImageView
-        imgView.downloadedFrom(link: link)
+        imgView.downloadImage(from: link)
     }
     
     /**

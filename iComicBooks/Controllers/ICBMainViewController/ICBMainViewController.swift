@@ -74,28 +74,36 @@ fileprivate extension ICBMainViewController {
                 return
             case let .result(result):
                 DispatchQueue.main.async {
-                    self.removeActivityIndicator(activityIndicator)
-                    self.returnDataToView()
+                    self.comicView.changeBorderColor()
                     self.comicTitleLabel.text = "#\(result.num) \(result.title)"
                     self.comicView.setImage(fromLink: result.img)
                     self.textSpeechUtterance = result.transcript!
                     self.comics.append(result)
                     self.lastComicId = result.num
-                    self.comicView.changeBorderColor()
+                    self.removeActivityIndicator(activityIndicator)
+                    self.removeDataFromView(false)
                 }
                 return
             }
         }
     }
     
-    func removeDataFromView() {
-        comicTitleLabel.isHidden = true
-        comicView.isHidden = true
-    }
-    
-    func returnDataToView() {
-        comicTitleLabel.isHidden = false
-        comicView.isHidden = false
+    func removeDataFromView(_ removed: Bool = true) {
+        var alphaValue: CGFloat
+        
+        if removed {
+            alphaValue = 0.0
+            self.comicTitleLabel.alpha = alphaValue
+            self.comicView.alpha = alphaValue
+            
+            return
+        }
+        
+        alphaValue = 1.0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.comicTitleLabel.alpha = alphaValue
+            self.comicView.alpha = alphaValue
+        })
     }
     
     /**
@@ -262,11 +270,11 @@ extension ICBMainViewController {
         switch recognizerState {
         case .ended:
             comicView.center = comicViewInitialCenterPosition
+            self.show(comicLoadingType)
             UIView.animate(withDuration: 0.4, animations: {
                 self.comicView.center = CGPoint(x: comicViewCenterPosX, y: self.comicViewInitialCenterPosition.x / 2.0)
                 self.addTiltAnimation(toView: self.comicView)
             }, completion: {(true) in
-                self.show(comicLoadingType)
                 self.comicView.center = CGPoint(x: comicViewInversePosX, y: self.comicView.center.y - self.comicViewInitialCenterPosition.x / 2.0)
                 self.resetViewToInitialPosition(self.comicView, withDuration: 0.3)
             })
@@ -317,11 +325,12 @@ extension ICBMainViewController {
                 
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x - self.view.frame.width, y: movableView.center.y)
-                }, completion: {(true) in
-                    self.show(.previousComic)
                 })
                 
+                self.show(.previousComic)
+
                 movableView.center = CGPoint(x: movableView.center.x + 2 * self.view.frame.width, y: movableView.center.y)
+                
                 resetViewToInitialPosition(movableView, withDuration: 0.4)
 
                 return
@@ -332,12 +341,14 @@ extension ICBMainViewController {
                     return
                 }
                 
+                self.show(.nextComic)
+                
                 UIView.animate(withDuration: 0.3, animations: {
                     movableView.center = CGPoint(x: movableView.center.x + self.view.frame.width, y: movableView.center.y)
-                }, completion: {(true) in
-                    self.show(.nextComic)
                 })
+                
                 movableView.center = CGPoint(x: movableView.center.x - 2 * self.view.frame.width, y: movableView.center.y)
+                
                 resetViewToInitialPosition(movableView, withDuration: 0.4)
 
                 return
