@@ -13,9 +13,7 @@ Surfstudio iOS Summer School project
 * Можно поделиться комиксом c другом
 
 ### Пример работы
-<img src="https://psv4.userapi.com/c848020/u30423368/docs/d7/4a17eff3ff3d/ezgif_com-optimize.gif?extra=1w9wfiI6bBY8tfSaWsaH_i8rNlVu5UvrHIY8-4eRBS7g27zyGmOUOpYketIP8riedTNK1lgpgcSTXK_lXvy8CgmLrb11YzY3hQPLr9lUIli2QbIt1QKecKGHGqtZ_TRPqkc_EXztw3FL" width="320" height="568" />
-
-[Пример работы всех функциональных возможностей](https://psv4.userapi.com/c825102/u30423368/docs/d1/bafdefc2136c/video.mp4?extra=90UxpyuwCsd-kzMd-H1epFbcAq3lAjia-eWxgCDNJ6N-yEr9ZbnO1mT3p06gkhjr7e6g1GgHMs0vR3F07ueQ8tqNF6gb5bWvV3-mCoq-v_PQEpqRdON7jdgtwnSt1uTV1WwUNx71jh6s&dl=1)
+<img src="https://thumbs.gfycat.com/CheeryJampackedDinosaur-size_restricted.gif" width="320" height="568" />
 
 ### Требования
 * iOS 10.0 or later
