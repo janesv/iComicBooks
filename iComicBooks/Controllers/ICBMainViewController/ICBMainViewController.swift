@@ -69,8 +69,7 @@ fileprivate extension ICBMainViewController {
         apiClient.getDataFrom(withParameters: comicId) { (result) in
             switch result {
             case .error(_):
-                let alert = UIAlertController(title: "Error", message: "Oops... Something went wrong :(", preferredStyle: UIAlertControllerStyle.alert)
-                self.present(alert, animated: true, completion: nil)
+                self.showAlert(type: .error)
                 return
             case let .result(result):
                 DispatchQueue.main.async {
@@ -107,7 +106,7 @@ fileprivate extension ICBMainViewController {
     }
     
     /**
-        Show neсessery comic
+        Show neсessary comic
      */
     func show(_ comicQueue: ComicLoadingType) {
         var comicIdString = String()
@@ -250,6 +249,7 @@ extension ICBMainViewController {
         switch recognizer.direction {
         case .right:
             if lastComicId >= comics.first!.num {
+                showAlert(type: .lastComicShown)
                 return
             }
             comicViewCenterPosX += 2 * view.frame.width
@@ -257,6 +257,7 @@ extension ICBMainViewController {
             comicLoadingType = .nextComic
         case .left:
             if lastComicId <= 1 {
+                showAlert(type: .firstComicShown)
                 return
             }
             comicViewCenterPosX -= 2 * view.frame.width
@@ -320,6 +321,7 @@ extension ICBMainViewController {
                 
                 if lastComicId <= 1 {
                     resetViewToInitialPosition(movableView, withDuration: 0.2)
+                    showAlert(type: .firstComicShown)
                     return
                 }
                 
@@ -338,6 +340,7 @@ extension ICBMainViewController {
 
                 if lastComicId >= comics.first!.num {
                     resetViewToInitialPosition(movableView, withDuration: 0.2)
+                    showAlert(type: .lastComicShown)
                     return
                 }
                 
