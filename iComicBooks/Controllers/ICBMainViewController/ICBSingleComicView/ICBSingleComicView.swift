@@ -36,6 +36,7 @@ class ICBSingleComicView: UIView {
         let comicImgViewFrame = CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height)
         let comicImgView = UIImageView(frame: comicImgViewFrame)
         comicImgView.makeImageViewRoundedWithColoredBorders()
+        comicImgView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(comicImgView)
     }
 }

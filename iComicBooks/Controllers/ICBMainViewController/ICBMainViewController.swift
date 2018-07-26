@@ -53,6 +53,11 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
         configureButtons()
         configureComicView()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        comicViewInitialCenterPosition = comicView.center
+    }
 }
 
 // MARK: - Load and setup data
@@ -159,7 +164,6 @@ fileprivate extension ICBMainViewController {
     // MARK: - comicView configurations
     
     fileprivate func configureComicView() {
-        comicViewInitialCenterPosition = comicView.center
         comicView.isUserInteractionEnabled = true
         
         addPanGestureRecognizer()

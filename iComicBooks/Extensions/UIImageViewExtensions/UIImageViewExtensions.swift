@@ -23,6 +23,7 @@ extension UIImageView {
         let contentImageView = UIImageView.init(frame: contentImageViewFrame)
         contentImageView.makeImageViewRounded(radius: 15.0)
         contentImageView.backgroundColor = .white
+        contentImageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         self.addSubview(contentImageView)
     }
