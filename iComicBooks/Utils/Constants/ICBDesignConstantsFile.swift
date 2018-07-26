@@ -49,3 +49,7 @@ struct ButtonImages {
     static let fullScreenClose = #imageLiteral(resourceName: "cancelButtonIcon")
 }
 
+extension UIImage {
+    static let comicViewPlaceholder = #imageLiteral(resourceName: "comicPlaceholder")
+}
+
