@@ -25,20 +25,26 @@ enum ComicLoadingType {
     case randomComic
 }
 
-class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
+final class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet var comicTitleLabel: UILabel!
-    @IBOutlet var speechSynthesizerButton: UIButton!
-    @IBOutlet var shareButton: UIButton!
-    @IBOutlet var comicView: ICBSingleComicView!
+    // MARK: - IBOutlets
     
-    fileprivate var speechSynthButtonIsPressed = false
-    fileprivate var comicViewInitialCenterPosition = CGPoint()
-    fileprivate var textSpeechUtterance = String()
-    fileprivate let speechSynthesizer = SpeechSynthesizer()
-    fileprivate var lastComicId = Int()
-    fileprivate var comics: [ICBComic] = []
+    @IBOutlet private var backgroundView: UIView!
+    @IBOutlet private var comicTitleLabel: UILabel!
+    @IBOutlet private var speechSynthesizerButton: UIButton!
+    @IBOutlet private var shareButton: UIButton!
+    @IBOutlet private var comicView: ICBSingleComicView!
+    
+    // MARK: - Private Properties
+    
+    private var speechSynthButtonIsPressed = false
+    private var comicViewInitialCenterPosition = CGPoint()
+    private var textSpeechUtterance = String()
+    private let speechSynthesizer = SpeechSynthesizer()
+    private var lastComicId = Int()
+    private var comics: [ICBComic] = []
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +68,7 @@ class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
 
 // MARK: - Load and setup data
 
-fileprivate extension ICBMainViewController {
+private extension ICBMainViewController {
     /**
         Load data from API by comic id
      */
@@ -133,11 +139,11 @@ fileprivate extension ICBMainViewController {
 
 // MARK: - Configuration
 
-fileprivate extension ICBMainViewController {
+private extension ICBMainViewController {
     
     // MARK: Label configurations
     
-    fileprivate func configureComicTitleLabel() {
+    func configureComicTitleLabel() {
         comicTitleLabel.textColor = UIColor.white
         comicTitleLabel.font = UIFont.comingSoonRegularFontWithSize(size: 18)
         comicTitleLabel.textAlignment = .center
@@ -145,12 +151,12 @@ fileprivate extension ICBMainViewController {
     
     // MARK: Button configurations
     
-    fileprivate func configureButtons() {
+    func configureButtons() {
         configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
         configureButton(shareButton, withImage: ButtonImages.share.normalState)
     }
     
-    fileprivate func configureButton(_ button: UIButton, withImage image: UIImage) {
+    func configureButton(_ button: UIButton, withImage image: UIImage) {
         button.setImage(image, for: .normal)
         
         if button == shareButton {
@@ -163,7 +169,7 @@ fileprivate extension ICBMainViewController {
     
     // MARK: - comicView configurations
     
-    fileprivate func configureComicView() {
+    func configureComicView() {
         comicView.isUserInteractionEnabled = true
         
         addPanGestureRecognizer()
@@ -214,7 +220,8 @@ extension ICBMainViewController {
         comicView.addGestureRecognizer(tapGesture)
     }
     
-    @objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+    @objc 
+    func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
         let fullScreenController = ICBFullScreenController()
         fullScreenController.configure(withView: comicView)
 
@@ -245,7 +252,8 @@ extension ICBMainViewController {
         })
     }
     
-    @objc func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
+    @objc 
+    func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
         var comicViewCenterPosX = comicViewInitialCenterPosition.x
         var comicViewInversePosX = comicViewCenterPosX
         var comicLoadingType: ComicLoadingType
@@ -295,7 +303,8 @@ extension ICBMainViewController {
         comicView.addGestureRecognizer(panGesture)
     }
     
-    @objc fileprivate func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+    @objc 
+    fileprivate func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: view)
         if let movableView = recognizer.view {
             movableView.center = CGPoint(x: comicViewInitialCenterPosition.x + translation.x, y: comicViewInitialCenterPosition.y + translation.y)
