@@ -21,14 +21,6 @@ class ICBFullScreenController: FullScreenSlideshowViewController {
         self.closeButton.setImage(ButtonImages.fullScreenClose, for: .normal)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
     func configure(withView view: ICBSingleComicView) {
         let comicImageView = view.subviews[0].subviews[0] as? UIImageView
         self.inputs = [ImageSource(image: (comicImageView?.image!)!)]

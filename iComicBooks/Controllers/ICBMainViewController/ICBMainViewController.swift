@@ -236,7 +236,7 @@ extension ICBMainViewController {
         }
     }
     
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             show(.randomComic)
         }
@@ -245,7 +245,7 @@ extension ICBMainViewController {
     // MARK: Swipe gesture
     
     fileprivate func addSwipeGestureRecognizer() {
-        [UISwipeGestureRecognizerDirection.left, .right].forEach({
+        [UISwipeGestureRecognizer.Direction.left, .right].forEach({
             let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
             gesture.direction = $0
             self.view.addGestureRecognizer(gesture)
