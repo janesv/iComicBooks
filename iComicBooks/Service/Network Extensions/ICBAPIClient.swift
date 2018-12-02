@@ -42,7 +42,6 @@ class ICBAPIClient {
         return sharedAPIClient
     }
     
-    
     /**
         Get data from the API Client with additional parameters.
         - parameter comicId: comic id. If it's empty, this very comic is the last one.
