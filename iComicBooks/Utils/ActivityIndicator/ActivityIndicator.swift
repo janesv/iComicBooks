@@ -13,7 +13,7 @@ extension UIViewController {
     func showActivityIndicator(atView view: UIView) -> UIView {
         let backgroundView = UIView.init(frame: view.bounds)
         backgroundView.backgroundColor?.withAlphaComponent(0.0)
-        let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        let indicator = UIActivityIndicatorView.init(style: .whiteLarge)
         indicator.center = backgroundView.center
         
         backgroundView.addSubview(indicator)

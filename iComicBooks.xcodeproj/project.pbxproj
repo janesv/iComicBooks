@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544653FA21B4474F007B04C5 /* ICBAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544653F921B4474F007B04C5 /* ICBAPITest.swift */; };
 		5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */; };
 		5458F25720FE1C0D0018B0F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25620FE1C0D0018B0F9 /* Assets.xcassets */; };
 		5458F25A20FE1C0D0018B0F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25820FE1C0D0018B0F9 /* LaunchScreen.storyboard */; };
@@ -25,10 +26,23 @@
 		87C8E6A6647BC24779457221 /* Pods_iComicBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		544653F321B43336007B04C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5458F24420FE1C0B0018B0F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5458F24B20FE1C0B0018B0F9;
+			remoteInfo = iComicBooks;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		055139E814F4080635832CA0 /* Pods-iComicBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iComicBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iComicBooks/Pods-iComicBooks.debug.xcconfig"; sourceTree = "<group>"; };
 		1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iComicBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A61488846D379F9F0D85DC0 /* Pods-iComicBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iComicBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-iComicBooks/Pods-iComicBooks.release.xcconfig"; sourceTree = "<group>"; };
+		544653EE21B43335007B04C5 /* iComicBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iComicBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		544653F221B43336007B04C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		544653F921B4474F007B04C5 /* ICBAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBAPITest.swift; sourceTree = "<group>"; };
 		5458F24C20FE1C0B0018B0F9 /* iComicBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iComicBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5458F25620FE1C0D0018B0F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		544653EB21B43335007B04C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5458F24920FE1C0B0018B0F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,10 +90,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		544653EF21B43336007B04C5 /* iComicBooksTests */ = {
+			isa = PBXGroup;
+			children = (
+				544653F921B4474F007B04C5 /* ICBAPITest.swift */,
+				544653F221B43336007B04C5 /* Info.plist */,
+			);
+			path = iComicBooksTests;
+			sourceTree = "<group>";
+		};
 		5458F24320FE1C0B0018B0F9 = {
 			isa = PBXGroup;
 			children = (
 				5458F24E20FE1C0B0018B0F9 /* iComicBooks */,
+				544653EF21B43336007B04C5 /* iComicBooksTests */,
 				5458F24D20FE1C0B0018B0F9 /* Products */,
 				47B74D464F0BA6322D8F39B6 /* Pods */,
 				C0C9B59649872340459008A0 /* Frameworks */,
@@ -83,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				5458F24C20FE1C0B0018B0F9 /* iComicBooks.app */,
+				544653EE21B43335007B04C5 /* iComicBooksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +289,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		544653ED21B43335007B04C5 /* iComicBooksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 544653F521B43336007B04C5 /* Build configuration list for PBXNativeTarget "iComicBooksTests" */;
+			buildPhases = (
+				544653EA21B43335007B04C5 /* Sources */,
+				544653EB21B43335007B04C5 /* Frameworks */,
+				544653EC21B43335007B04C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				544653F421B43336007B04C5 /* PBXTargetDependency */,
+			);
+			name = iComicBooksTests;
+			productName = iComicBooksTests;
+			productReference = 544653EE21B43335007B04C5 /* iComicBooksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5458F24B20FE1C0B0018B0F9 /* iComicBooks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5458F25E20FE1C0D0018B0F9 /* Build configuration list for PBXNativeTarget "iComicBooks" */;
@@ -282,12 +332,18 @@
 		5458F24420FE1C0B0018B0F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Sviridova Evgenia";
 				TargetAttributes = {
+					544653ED21B43335007B04C5 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+						TestTargetID = 5458F24B20FE1C0B0018B0F9;
+					};
 					5458F24B20FE1C0B0018B0F9 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -305,11 +361,19 @@
 			projectRoot = "";
 			targets = (
 				5458F24B20FE1C0B0018B0F9 /* iComicBooks */,
+				544653ED21B43335007B04C5 /* iComicBooksTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		544653EC21B43335007B04C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5458F24A20FE1C0B0018B0F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +429,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		544653EA21B43335007B04C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				544653FA21B4474F007B04C5 /* ICBAPITest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5458F24820FE1C0B0018B0F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,6 +457,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		544653F421B43336007B04C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5458F24B20FE1C0B0018B0F9 /* iComicBooks */;
+			targetProxy = 544653F321B43336007B04C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		5458F25820FE1C0D0018B0F9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -397,6 +477,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		544653F621B43336007B04C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WKLSR5W356;
+				INFOPLIST_FILE = iComicBooksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = janesv.iComicBooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iComicBooksTests/iComicBooksTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iComicBooks.app/iComicBooks";
+			};
+			name = Debug;
+		};
+		544653F721B43336007B04C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WKLSR5W356;
+				INFOPLIST_FILE = iComicBooksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = janesv.iComicBooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iComicBooksTests/iComicBooksTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iComicBooks.app/iComicBooks";
+			};
+			name = Release;
+		};
 		5458F25C20FE1C0D0018B0F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -526,7 +656,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = janesv.iComicBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -546,7 +676,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = janesv.iComicBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -554,6 +684,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		544653F521B43336007B04C5 /* Build configuration list for PBXNativeTarget "iComicBooksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				544653F621B43336007B04C5 /* Debug */,
+				544653F721B43336007B04C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5458F24720FE1C0B0018B0F9 /* Build configuration list for PBXProject "iComicBooks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
