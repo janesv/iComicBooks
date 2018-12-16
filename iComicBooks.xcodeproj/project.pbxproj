@@ -24,6 +24,16 @@
 		54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E42100F7FF00EB132B /* ICBAPIClient.swift */; };
 		54D242E82101010500EB132B /* ICBComicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E72101010500EB132B /* ICBComicObject.swift */; };
 		87C8E6A6647BC24779457221 /* Pods_iComicBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */; };
+		D1DFF65E21C6DED200F896F6 /* ICBMockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF65D21C6DED200F896F6 /* ICBMockURLSession.swift */; };
+		D1DFF66021C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF65F21C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift */; };
+		D1DFF66221C6DF7100F896F6 /* ICBAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E42100F7FF00EB132B /* ICBAPIClient.swift */; };
+		D1DFF66421C6DF9900F896F6 /* ICBURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66321C6DF9900F896F6 /* ICBURLSessionProtocol.swift */; };
+		D1DFF66621C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66521C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift */; };
+		D1DFF66821C6E02500F896F6 /* ICBURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66721C6E02500F896F6 /* ICBURLSessionExtensions.swift */; };
+		D1DFF66921C6E03600F896F6 /* ICBURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66721C6E02500F896F6 /* ICBURLSessionExtensions.swift */; };
+		D1DFF66A21C6E03900F896F6 /* ICBURLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66521C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift */; };
+		D1DFF66B21C6E03D00F896F6 /* ICBURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF66321C6DF9900F896F6 /* ICBURLSessionProtocol.swift */; };
+		D1DFF66C21C6E12000F896F6 /* ICBComicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E72101010500EB132B /* ICBComicObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +70,11 @@
 		54D242E020FF6F0900EB132B /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		54D242E42100F7FF00EB132B /* ICBAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBAPIClient.swift; sourceTree = "<group>"; };
 		54D242E72101010500EB132B /* ICBComicObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBComicObject.swift; sourceTree = "<group>"; };
+		D1DFF65D21C6DED200F896F6 /* ICBMockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBMockURLSession.swift; sourceTree = "<group>"; };
+		D1DFF65F21C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBMockURLSessionDataTask.swift; sourceTree = "<group>"; };
+		D1DFF66321C6DF9900F896F6 /* ICBURLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBURLSessionProtocol.swift; sourceTree = "<group>"; };
+		D1DFF66521C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBURLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		D1DFF66721C6E02500F896F6 /* ICBURLSessionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBURLSessionExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +108,7 @@
 		544653EF21B43336007B04C5 /* iComicBooksTests */ = {
 			isa = PBXGroup;
 			children = (
+				D1DFF66121C6DF3400F896F6 /* Mocks */,
 				544653F921B4474F007B04C5 /* ICBAPITest.swift */,
 				544653F221B43336007B04C5 /* Info.plist */,
 			);
@@ -257,6 +273,7 @@
 		54D242E32100F5F700EB132B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D1DFF66D21C6E5B600F896F6 /* URL Session Protocols */,
 				54D242E92104BB9300EB132B /* Network Extensions */,
 			);
 			path = Service;
@@ -284,6 +301,25 @@
 				1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1DFF66121C6DF3400F896F6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D1DFF65D21C6DED200F896F6 /* ICBMockURLSession.swift */,
+				D1DFF65F21C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D1DFF66D21C6E5B600F896F6 /* URL Session Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D1DFF66321C6DF9900F896F6 /* ICBURLSessionProtocol.swift */,
+				D1DFF66521C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift */,
+				D1DFF66721C6E02500F896F6 /* ICBURLSessionExtensions.swift */,
+			);
+			path = "URL Session Protocols";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +469,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1DFF66A21C6E03900F896F6 /* ICBURLSessionDataTaskProtocol.swift in Sources */,
+				D1DFF66221C6DF7100F896F6 /* ICBAPIClient.swift in Sources */,
+				D1DFF66021C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift in Sources */,
+				D1DFF66B21C6E03D00F896F6 /* ICBURLSessionProtocol.swift in Sources */,
 				544653FA21B4474F007B04C5 /* ICBAPITest.swift in Sources */,
+				D1DFF66921C6E03600F896F6 /* ICBURLSessionExtensions.swift in Sources */,
+				D1DFF65E21C6DED200F896F6 /* ICBMockURLSession.swift in Sources */,
+				D1DFF66C21C6E12000F896F6 /* ICBComicObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54D242E82101010500EB132B /* ICBComicObject.swift in Sources */,
+				D1DFF66421C6DF9900F896F6 /* ICBURLSessionProtocol.swift in Sources */,
 				54D242CB20FE651800EB132B /* ICBDesignConstantsFile.swift in Sources */,
 				5463565E210939D900A14575 /* ActivityIndicator.swift in Sources */,
 				54D242DD20FF6E1E00EB132B /* ICBSingleComicView.swift in Sources */,
@@ -449,7 +493,9 @@
 				546356542105123800A14575 /* SpeechSynthesizer.swift in Sources */,
 				54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */,
 				5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */,
+				D1DFF66621C6DFB200F896F6 /* ICBURLSessionDataTaskProtocol.swift in Sources */,
 				54635666210A223200A14575 /* AlertController.swift in Sources */,
+				D1DFF66821C6E02500F896F6 /* ICBURLSessionExtensions.swift in Sources */,
 				5463565A21091FA600A14575 /* ICBFullScreenController.swift in Sources */,
 				54D242E120FF6F0900EB132B /* UIImageViewExtensions.swift in Sources */,
 			);

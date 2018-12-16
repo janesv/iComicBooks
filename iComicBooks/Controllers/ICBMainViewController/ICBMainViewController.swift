@@ -76,24 +76,34 @@ private extension ICBMainViewController {
         removeDataFromView()
         let activityIndicator = self.showActivityIndicator(atView: self.view)
         
-        let apiClient = ICBAPIClient.shared()
-        apiClient.getDataFrom(withParameters: comicId) { (result) in
-            switch result {
-            case .error(_):
+        let apiClient = ICBAPIClient()
+        apiClient.get(comicId: comicId) { (result, error) in
+            guard error == nil else {
                 self.showAlert(type: .error)
                 return
-            case let .result(result):
+            }
+            
+            guard let result = result else {
+                self.showAlert(type: .error)
+                return
+            }
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                let comicObject = try jsonDecoder.decode(ICBComic.self, from: result)
+                
                 DispatchQueue.main.async {
                     self.comicView.changeBorderColor()
-                    self.comicTitleLabel.text = "#\(result.num) \(result.title)"
-                    self.comicView.setImage(fromLink: result.img)
-                    self.textSpeechUtterance = result.transcript!
-                    self.comics.append(result)
-                    self.lastComicId = result.num
+                    self.comicTitleLabel.text = "#\(comicObject.num) \(comicObject.title)"
+                    self.comicView.setImage(fromLink: comicObject.img)
+                    self.textSpeechUtterance = comicObject.transcript!
+                    self.comics.append(comicObject)
+                    self.lastComicId = comicObject.num
                     self.removeActivityIndicator(activityIndicator)
                     self.removeDataFromView(false)
                 }
-                return
+            } catch let jsonError as NSError {
+                fatalError("\(jsonError)")
             }
         }
     }
