@@ -2,7 +2,7 @@
 //  ICBAPIClient.swift
 //  iComicBooks
 //
-//  Created by Sviridova Evgenia on 19.07.2018.
+//  Created by Sviridova Evgenia on on 02/12/2018.
 //  Copyright © 2018 Sviridova Evgenia. All rights reserved.
 //
 
@@ -15,14 +15,14 @@ import UIKit
 
 let ICBAPIClientBaseURLString = "https://xkcd.com"
 
-enum ICBComicError: Error {
-    case noData
-}
-
-enum ICBComicResult {
-    case result(ICBComic)
-    case error(Error)
-}
+//enum ICBComicError: Error {
+//    case noData
+//}
+//
+//enum ICBComicResult {
+//    case result(ICBComic)
+//    case error(Error)
+//}
 
 class ICBAPIClient {
     
@@ -32,7 +32,6 @@ class ICBAPIClient {
     
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
-        
     }
     
     func get(comicId: String, callback: @escaping completeClosure ) {

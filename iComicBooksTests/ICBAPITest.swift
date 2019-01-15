@@ -29,7 +29,7 @@ class ICBAPIClientTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        comicId = ""
+        comicId = "/2085"
         apiClient = ICBAPIClient(session: mockSession)
     }
     
@@ -49,11 +49,12 @@ class ICBAPIClientTests: XCTestCase {
             // Return data
         }
         
-        XCTAssert(mockSession.lastURL == URL(string: "https://xkcd.com/info.0.json"))
+        XCTAssert(mockSession.lastURL == URL(string: "https://xkcd.com/2085/info.0.json"))
         
     }
     
     func test_get_resume_called() {
+        
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
         }
@@ -61,7 +62,7 @@ class ICBAPIClientTests: XCTestCase {
         let dataTask = MockURLSessionDataTask()
         mockSession.nextDataTask = dataTask
         
-        apiClient.get(comicId: comicId) { (success, response) in
+        apiClient.get(comicId: comicId) { (data, error) in
             // Return data
         }
         
@@ -85,7 +86,7 @@ class ICBAPIClientTests: XCTestCase {
         XCTAssertNotNil(actualData)
     }
     
-    func test_decode_data() {
+    func test_check_data() {
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
         }
@@ -107,7 +108,19 @@ class ICBAPIClientTests: XCTestCase {
                 let jsonDecoder = JSONDecoder()
                 let comicObject = try jsonDecoder.decode(ICBComic.self, from: urlContent)
                 XCTAssertNotNil(comicObject, "Comic object is nil")
+                
+                XCTAssertEqual(comicObject.month, "12")
                 XCTAssertEqual(comicObject.num, 2085)
+                XCTAssertEqual(comicObject.link, "")
+                XCTAssertEqual(comicObject.year, "2018")
+                XCTAssertEqual(comicObject.news, "")
+                XCTAssertEqual(comicObject.safeTitle, "arXiv")
+                XCTAssertEqual(comicObject.transcript, "")
+                XCTAssertEqual(comicObject.alt, "Both arXiv and archive.org are invaluable projects which, if they didn't exist, we would dismiss as obviously ridiculous and unworkable.")
+                XCTAssertEqual(comicObject.img, "https://imgs.xkcd.com/comics/arxiv.png")
+                XCTAssertEqual(comicObject.title, "arXiv")
+                XCTAssertEqual(comicObject.day, "14")
+                
             } catch let jsonError as NSError {
                 fatalError("\(jsonError)")
             }

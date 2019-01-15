@@ -2,7 +2,7 @@
 //  ICBComicObject.swift
 //  iComicBooks
 //
-//  Created by Sviridova Evgenia on 19.07.2018.
+//  Created by Sviridova Evgenia on on 02/12/2018.
 //  Copyright © 2018 Sviridova Evgenia. All rights reserved.
 //
 
