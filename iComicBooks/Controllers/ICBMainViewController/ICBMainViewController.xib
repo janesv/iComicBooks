@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,6 +15,7 @@
                 <outlet property="backgroundView" destination="FyT-Bs-uKd" id="DvA-4I-mnU"/>
                 <outlet property="comicTitleLabel" destination="fE3-W0-J44" id="hJ6-1s-hdd"/>
                 <outlet property="comicView" destination="1fT-bs-fiN" id="pNg-OQ-stL"/>
+                <outlet property="refreshButton" destination="Lfe-jK-6cL" id="9F2-Py-uTb"/>
                 <outlet property="shareButton" destination="lOE-BT-8Kb" id="cAB-GZ-pyo"/>
                 <outlet property="speechSynthesizerButton" destination="jkT-82-ZUm" id="za5-Jg-p6e"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7tW-oz-Ty2"/>
@@ -35,7 +36,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="fyP-W0-0ky">
-                            <rect key="frame" x="105.5" y="518" width="110" height="34"/>
+                            <rect key="frame" x="65" y="518" width="190" height="34"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkT-82-ZUm">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -43,11 +44,16 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-BT-8Kb">
                                     <rect key="frame" x="80" y="0.0" width="30" height="34"/>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfe-jK-6cL">
+                                    <rect key="frame" x="160" y="0.0" width="30" height="34"/>
+                                </button>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Lfe-jK-6cL" secondAttribute="trailing" id="9Fb-WN-RA0"/>
+                                <constraint firstAttribute="bottom" secondItem="Lfe-jK-6cL" secondAttribute="bottom" id="G7V-UN-TYu"/>
                                 <constraint firstAttribute="bottom" secondItem="lOE-BT-8Kb" secondAttribute="bottom" id="e5P-kY-WWg"/>
+                                <constraint firstItem="Lfe-jK-6cL" firstAttribute="top" secondItem="fyP-W0-0ky" secondAttribute="top" id="f18-AT-ojI"/>
                                 <constraint firstItem="jkT-82-ZUm" firstAttribute="leading" secondItem="fyP-W0-0ky" secondAttribute="leading" id="g3Z-Dm-Ko2"/>
-                                <constraint firstAttribute="trailing" secondItem="lOE-BT-8Kb" secondAttribute="trailing" id="nf2-P8-h2N"/>
                                 <constraint firstItem="lOE-BT-8Kb" firstAttribute="top" secondItem="fyP-W0-0ky" secondAttribute="top" id="qNB-2D-jKn"/>
                                 <constraint firstItem="jkT-82-ZUm" firstAttribute="top" secondItem="fyP-W0-0ky" secondAttribute="top" id="uUi-PT-PHy"/>
                                 <constraint firstAttribute="bottom" secondItem="jkT-82-ZUm" secondAttribute="bottom" id="zhO-do-NgW"/>

@@ -20,7 +20,13 @@ func jsonToData(json: AnyObject) -> Data? {
 
 class ICBAPIClientTests: XCTestCase {
     
+    enum ThrownError: Error {
+        case unxpectedError
+    }
+    
     let jsonObject = ["month": "12", "num": 2085, "link": "", "year": "2018", "news": "", "safe_title": "arXiv", "transcript": "", "alt": "Both arXiv and archive.org are invaluable projects which, if they didn't exist, we would dismiss as obviously ridiculous and unworkable.", "img": "https://imgs.xkcd.com/comics/arxiv.png", "title": "arXiv", "day": "14"] as [String : Any]
+    
+    let jsonObjectWithError = ["num": 2085, "link": "", "year": "2018", "news": "", "safe_title": "arXiv", "transcript": "", "alt": "Both arXiv and archive.org are invaluable projects which, if they didn't exist, we would dismiss as obviously ridiculous and unworkable.", "img": "https://imgs.xkcd.com/comics/arxiv.png", "title": "arXiv", "day": "14"] as [String : Any]
     
     var apiClient: ICBAPIClient!
     var comicId: String?
@@ -29,23 +35,22 @@ class ICBAPIClientTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        comicId = "/2085"
-        apiClient = ICBAPIClient(session: mockSession)
     }
     
     override func tearDown() {
         super.tearDown()
         
-        comicId = nil
     }
     
     func test_get_request_with_comic_id() {
+        comicId = "/2085"
+        apiClient = ICBAPIClient(session: mockSession)
         
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
         }
         
-        apiClient.get(comicId: comicId) { (success, response) in
+        apiClient.get(comicId: comicId) { (response) in
             // Return data
         }
         
@@ -53,7 +58,21 @@ class ICBAPIClientTests: XCTestCase {
         
     }
     
+    func test_get_request_with_empty_comic_id() {
+        let emptyComicId = ""
+        apiClient = ICBAPIClient(session: mockSession)
+        
+        apiClient.get(comicId: emptyComicId) { (response) in
+            // Return data
+        }
+        
+        XCTAssert(mockSession.lastURL == URL(string: "https://xkcd.com/info.0.json"))
+        
+    }
+    
     func test_get_resume_called() {
+        comicId = "/2085"
+        apiClient = ICBAPIClient(session: mockSession)
         
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
@@ -62,67 +81,122 @@ class ICBAPIClientTests: XCTestCase {
         let dataTask = MockURLSessionDataTask()
         mockSession.nextDataTask = dataTask
         
-        apiClient.get(comicId: comicId) { (data, error) in
+        apiClient.get(comicId: comicId) { (response) in
             // Return data
         }
         
         XCTAssert(dataTask.resumeWasCalled)
     }
     
-    func test_get_should_return_data() {
+    func test_should_return_data() {
+        comicId = "/2085"
+        apiClient = ICBAPIClient(session: mockSession)
+        
+        guard let comicId = comicId else {
+            fatalError("ERROR: comic id can't be empty")
+        }
+        
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case let .result(response):
+               XCTAssertNotNil(response)
+            default:
+                return
+            }
+        }
+    }
+    
+    func test_should_return_no_data_error() {
+        comicId = "/0"
+
+        apiClient = ICBAPIClient(session: mockSession)
+        
+        guard let comicId = comicId else {
+            fatalError("ERROR: comic id can't be empty")
+        }
+        
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case let .error(response):
+                XCTAssertEqual(response.localizedDescription, ICBComicError.noData.localizedDescription)
+            default:
+                return
+            }
+        }
+    }
+    
+    func test_should_return_json_error() {
+        comicId = "/2085"
+        
+        apiClient = ICBAPIClient(session: mockSession)
+        
+        guard let comicId = comicId else {
+            fatalError("ERROR: comic id can't be empty")
+        }
+        
+        let expectedDataWithError = jsonToData(json: jsonObjectWithError as AnyObject)
+        mockSession.nextData = expectedDataWithError
+        
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case let .error(response):
+                XCTAssertNotNil(response.localizedDescription)
+            default:
+                return
+            }
+        }
+    }
+    
+    func test_should_return_error() {
+        comicId = "/2085"
+        
+        apiClient = ICBAPIClient(session: mockSession)
+        
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
         }
         
         let expectedData = jsonToData(json: jsonObject as AnyObject)
-        
         mockSession.nextData = expectedData
+        mockSession.nextError = ThrownError.unxpectedError
         
-        var actualData: Data?
-        apiClient.get(comicId: comicId) { (data, error) in
-            actualData = data
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case let .error(response):
+                XCTAssertNotNil(response.localizedDescription)
+            default:
+                return
+            }
         }
-        
-        XCTAssertNotNil(actualData)
     }
     
     func test_check_data() {
+        comicId = "/2085"
+        apiClient = ICBAPIClient(session: mockSession)
+        
         guard let comicId = comicId else {
             fatalError("ERROR: comic id can't be empty")
         }
         
         let expectedData = jsonToData(json: jsonObject as AnyObject)
-        
         mockSession.nextData = expectedData
         
-        apiClient.get(comicId: comicId) { (data, error) in
-            guard error == nil else {
-                fatalError("\(String(describing: error))")
-            }
-            
-            guard let urlContent = data else {
-                fatalError("\(String(describing: data))")
-            }
-            
-            do {
-                let jsonDecoder = JSONDecoder()
-                let comicObject = try jsonDecoder.decode(ICBComic.self, from: urlContent)
-                XCTAssertNotNil(comicObject, "Comic object is nil")
-                
-                XCTAssertEqual(comicObject.month, "12")
-                XCTAssertEqual(comicObject.num, 2085)
-                XCTAssertEqual(comicObject.link, "")
-                XCTAssertEqual(comicObject.year, "2018")
-                XCTAssertEqual(comicObject.news, "")
-                XCTAssertEqual(comicObject.safeTitle, "arXiv")
-                XCTAssertEqual(comicObject.transcript, "")
-                XCTAssertEqual(comicObject.alt, "Both arXiv and archive.org are invaluable projects which, if they didn't exist, we would dismiss as obviously ridiculous and unworkable.")
-                XCTAssertEqual(comicObject.img, "https://imgs.xkcd.com/comics/arxiv.png")
-                XCTAssertEqual(comicObject.title, "arXiv")
-                XCTAssertEqual(comicObject.day, "14")
-                
-            } catch let jsonError as NSError {
-                fatalError("\(jsonError)")
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case let .result(response):
+                XCTAssertEqual(response.month, "12")
+                XCTAssertEqual(response.num, 2085)
+                XCTAssertEqual(response.link, "")
+                XCTAssertEqual(response.year, "2018")
+                XCTAssertEqual(response.news, "")
+                XCTAssertEqual(response.safeTitle, "arXiv")
+                XCTAssertEqual(response.transcript, "")
+                XCTAssertEqual(response.alt, "Both arXiv and archive.org are invaluable projects which, if they didn't exist, we would dismiss as obviously ridiculous and unworkable.")
+                XCTAssertEqual(response.img, "https://imgs.xkcd.com/comics/arxiv.png")
+                XCTAssertEqual(response.title, "arXiv")
+                XCTAssertEqual(response.day, "14")
+            default:
+                return
             }
         }
     }

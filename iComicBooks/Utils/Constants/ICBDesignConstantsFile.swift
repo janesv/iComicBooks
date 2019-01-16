@@ -46,6 +46,11 @@ struct ButtonImages {
         static let pressedState = #imageLiteral(resourceName: "sharePressedButtonIcon")
     }
     
+    struct refresh {
+        static let normalState = UIImage(named: "refreshButtonImage")!
+        static let pressedState = UIImage(named: "refreshButtonImage")!
+    }
+    
     static let fullScreenClose = #imageLiteral(resourceName: "cancelButtonIcon")
 }
 

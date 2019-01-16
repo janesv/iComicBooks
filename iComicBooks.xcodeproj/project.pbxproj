@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		544653FA21B4474F007B04C5 /* ICBAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544653F921B4474F007B04C5 /* ICBAPITest.swift */; };
 		5458F25020FE1C0B0018B0F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */; };
-		5458F25720FE1C0D0018B0F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25620FE1C0D0018B0F9 /* Assets.xcassets */; };
 		5458F25A20FE1C0D0018B0F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5458F25820FE1C0D0018B0F9 /* LaunchScreen.storyboard */; };
 		546356542105123800A14575 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546356532105123800A14575 /* SpeechSynthesizer.swift */; };
 		5463565A21091FA600A14575 /* ICBFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463565921091FA600A14575 /* ICBFullScreenController.swift */; };
 		5463565E210939D900A14575 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463565D210939D900A14575 /* ActivityIndicator.swift */; };
 		54635666210A223200A14575 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54635665210A223200A14575 /* AlertController.swift */; };
+		547EFBBE21EF06ED00D0BDB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547EFBBD21EF06ED00D0BDB2 /* Assets.xcassets */; };
 		54D242C320FE3FE600EB132B /* ICBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242C220FE3FE600EB132B /* ICBMainViewController.swift */; };
 		54D242C520FE401300EB132B /* ICBMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54D242C420FE401300EB132B /* ICBMainViewController.xib */; };
 		54D242CB20FE651800EB132B /* ICBDesignConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */; };
@@ -24,7 +24,6 @@
 		54D242E52100F80000EB132B /* ICBAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E42100F7FF00EB132B /* ICBAPIClient.swift */; };
 		54D242E82101010500EB132B /* ICBComicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E72101010500EB132B /* ICBComicObject.swift */; };
 		87C8E6A6647BC24779457221 /* Pods_iComicBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1345DDB082C2FD4834C9EF2F /* Pods_iComicBooks.framework */; };
-		D18B9F3321D3969500BC46C3 /* iComicBooksTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 544653EE21B43335007B04C5 /* iComicBooksTests.xctest */; };
 		D1DFF65E21C6DED200F896F6 /* ICBMockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF65D21C6DED200F896F6 /* ICBMockURLSession.swift */; };
 		D1DFF66021C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFF65F21C6DF1500F896F6 /* ICBMockURLSessionDataTask.swift */; };
 		D1DFF66221C6DF7100F896F6 /* ICBAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D242E42100F7FF00EB132B /* ICBAPIClient.swift */; };
@@ -56,13 +55,13 @@
 		544653F921B4474F007B04C5 /* ICBAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBAPITest.swift; sourceTree = "<group>"; };
 		5458F24C20FE1C0B0018B0F9 /* iComicBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iComicBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5458F25620FE1C0D0018B0F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5458F25920FE1C0D0018B0F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5458F25B20FE1C0D0018B0F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		546356532105123800A14575 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		5463565921091FA600A14575 /* ICBFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBFullScreenController.swift; sourceTree = "<group>"; };
 		5463565D210939D900A14575 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		54635665210A223200A14575 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		547EFBBD21EF06ED00D0BDB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54D242C220FE3FE600EB132B /* ICBMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBMainViewController.swift; sourceTree = "<group>"; };
 		54D242C420FE401300EB132B /* ICBMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ICBMainViewController.xib; sourceTree = "<group>"; };
 		54D242CA20FE651800EB132B /* ICBDesignConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICBDesignConstantsFile.swift; sourceTree = "<group>"; };
@@ -212,9 +211,9 @@
 		54D242C720FE639C00EB132B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				547EFBBD21EF06ED00D0BDB2 /* Assets.xcassets */,
 				54D242CE20FE777800EB132B /* Fonts */,
 				5458F24F20FE1C0B0018B0F9 /* AppDelegate.swift */,
-				5458F25620FE1C0D0018B0F9 /* Assets.xcassets */,
 				5458F25820FE1C0D0018B0F9 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -408,7 +407,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D18B9F3321D3969500BC46C3 /* iComicBooksTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,8 +416,8 @@
 			files = (
 				54D242C520FE401300EB132B /* ICBMainViewController.xib in Resources */,
 				5458F25A20FE1C0D0018B0F9 /* LaunchScreen.storyboard in Resources */,
+				547EFBBE21EF06ED00D0BDB2 /* Assets.xcassets in Resources */,
 				54D242D220FE791200EB132B /* ComingSoon.ttf in Resources */,
-				5458F25720FE1C0D0018B0F9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

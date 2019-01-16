@@ -34,6 +34,7 @@ final class ICBMainViewController: UIViewController, SpeechSynthesizerDelegate {
     @IBOutlet private var speechSynthesizerButton: UIButton!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var comicView: ICBSingleComicView!
+    @IBOutlet var refreshButton: UIButton!
     
     // MARK: - Private Properties
     
@@ -74,36 +75,26 @@ private extension ICBMainViewController {
      */
     func loadData(comicId: String) {
         removeDataFromView()
-        let activityIndicator = self.showActivityIndicator(atView: self.view)
+        let activityIndicator = self.showActivityIndicator(atView: self.comicView)
         
         let apiClient = ICBAPIClient()
-        apiClient.get(comicId: comicId) { (result, error) in
-            guard error == nil else {
+        apiClient.get(comicId: comicId) { (response) in
+            switch response {
+            case .error(_):
                 self.showAlert(type: .error)
                 return
-            }
-            
-            guard let result = result else {
-                self.showAlert(type: .error)
-                return
-            }
-            
-            do {
-                let jsonDecoder = JSONDecoder()
-                let comicObject = try jsonDecoder.decode(ICBComic.self, from: result)
                 
+            case let .result(result):
                 DispatchQueue.main.async {
                     self.comicView.changeBorderColor()
-                    self.comicTitleLabel.text = "#\(comicObject.num) \(comicObject.title)"
-                    self.comicView.setImage(fromLink: comicObject.img)
-                    self.textSpeechUtterance = comicObject.transcript!
-                    self.comics.append(comicObject)
-                    self.lastComicId = comicObject.num
+                    self.comicTitleLabel.text = "#\(result.num) \(result.title)"
+                    self.comicView.setImage(fromLink: result.img)
+                    self.textSpeechUtterance = result.transcript!
+                    self.comics.append(result)
+                    self.lastComicId = result.num
                     self.removeActivityIndicator(activityIndicator)
                     self.removeDataFromView(false)
                 }
-            } catch let jsonError as NSError {
-                fatalError("\(jsonError)")
             }
         }
     }
@@ -164,6 +155,7 @@ private extension ICBMainViewController {
     func configureButtons() {
         configureButton(speechSynthesizerButton, withImage: ButtonImages.speechSynth.normalState)
         configureButton(shareButton, withImage: ButtonImages.share.normalState)
+        configureButton(refreshButton, withImage: ButtonImages.refresh.normalState)
     }
     
     func configureButton(_ button: UIButton, withImage image: UIImage) {
@@ -174,6 +166,8 @@ private extension ICBMainViewController {
             button.addTarget(self, action: #selector(ICBMainViewController.shareButtonDidPress), for: .touchUpInside)
         } else if button == speechSynthesizerButton {
             button.addTarget(self, action: #selector(ICBMainViewController.speechSynthButtonDidPress), for: .touchUpInside)
+        } else if button == refreshButton {
+            button.addTarget(self, action: #selector(ICBMainViewController.refreshButtonDidPress), for: .touchUpInside)
         }
     }
     
@@ -216,6 +210,12 @@ extension ICBMainViewController {
     func speechDidFinish() {
         speechSynthesizerButton.setImage(ButtonImages.speechSynth.normalState, for: .normal)
         speechSynthButtonIsPressed = false
+    }
+    
+    // MARK: Refresh data
+    
+    @objc fileprivate func refreshButtonDidPress() {
+        show(.currentComic)
     }
 }
 
@@ -366,7 +366,7 @@ extension ICBMainViewController {
                     showAlert(type: .lastComicShown)
                     return
                 }
-                
+               
                 self.show(.nextComic)
                 
                 UIView.animate(withDuration: 0.3, animations: {
